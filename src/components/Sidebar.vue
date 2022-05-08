@@ -53,78 +53,124 @@
             </template>
             <template v-slot:title> Course </template>
             <template v-slot:content>
-              <router-link
-                to="/component/projectmanagement"
-                class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Project Management
-              </router-link>
-              <router-link
-                to="/component/accordion"
-                class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-              
-                Accordion
-              </router-link>
-              <router-link
-                to="/component/badge"
-                class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Badge
-              </router-link>
-              <router-link
-                to="/component/breadcumb"
-                class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Breadcumb
-              </router-link>
-              <router-link
-                to="/component/button"
-                class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Button
-              </router-link>
-              <router-link
-                to="/component/card"
-                class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Card
-              </router-link>
-              <button
-                class="w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Swiper Carousel
-              </button>
-              <button
-                class="w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Dropdown
-              </button>
-              <button
-                class="w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                List Group
-              </button>
-              <button
-                class="w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Modal
-              </button>
-              <button
-                class="w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Nav
-              </button>
-              <button
-                class="w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Pagination
-              </button>
-              <button
-                class="w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Progress
-              </button>
+              <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> Project Management </template>
+                  <template v-slot:content>
+                    <router-link
+                      to="/component/card"
+                      class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    >
+                      Students
+                    </router-link>
+                    <router-link
+                      to="/component/badge"
+                      class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    >
+                      Examination
+                    </router-link>
+                    <router-link
+                      to="/component/breadcumb"
+                      class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    >
+                      Evaluation
+                    </router-link>
+                  </template>
+                </menu-accordion>
+              </div>
+               <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> CI </template>
+                  <template v-slot:content>
+                    </template>
+                </menu-accordion>
+              </div>
+               <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> Media Processing </template>
+                  <template v-slot:content>
+                    </template>
+                </menu-accordion>
+              </div>
+               <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> Agile Management </template>
+                  <template v-slot:content>
+                    </template>
+                </menu-accordion>
+              </div>
+               <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> Project & Seminar </template>
+                  <template v-slot:content>
+                    </template>
+                </menu-accordion>
+              </div>
+               <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> Masters Thesis </template>
+                  <template v-slot:content>
+                    </template>
+                </menu-accordion>
+              </div>
+               <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> Computer Graphics </template>
+                  <template v-slot:content>
+                    </template>
+                </menu-accordion>
+              </div>
+               <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> Distributed Systems </template>
+                  <template v-slot:content>
+                    </template>
+                </menu-accordion>
+              </div>
+               <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> German Language Proficiency </template>
+                  <template v-slot:content>
+                    </template>
+                </menu-accordion>
+              </div>
+               <div class="item mt-3 ml-3">
+                <menu-accordion>
+                  <template v-slot:icon>
+                    <Icon icon="gg:corner-double-up-right" />
+                  </template>
+                  <template v-slot:title> Blockchain </template>
+                  <template v-slot:content>
+                    </template>
+                </menu-accordion>
+              </div>
             </template>
           </menu-accordion>
         </div>
@@ -133,22 +179,22 @@
   </nav>
 </template>
 <style>
-  .active {
-  }
+.active {
+}
 </style>
 <script>
-  import { Icon } from "@iconify/vue";
-  import MenuAccordion from "./MenuAccordion.vue";
-  export default {
-    components: {
-      Icon,
-      MenuAccordion,
+import { Icon } from "@iconify/vue";
+import MenuAccordion from "./MenuAccordion.vue";
+export default {
+  components: {
+    Icon,
+    MenuAccordion,
+  },
+  methods: {
+    sidebarToggle: function () {
+      document.querySelector(".flex-sidebar").classList.add("hidden");
     },
-    methods: {
-      sidebarToggle: function () {
-        document.querySelector(".flex-sidebar").classList.add("hidden");
-      },
-    },
-    mounted() {},
-  };
+  },
+  mounted() {},
+};
 </script>
