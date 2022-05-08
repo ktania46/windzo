@@ -3,13 +3,13 @@ import { createRouter, createWebHistory } from "vue-router";
 // Default Pages
 import Dashboard from "../views/Dashboard.vue";
 // Component Pages
-import Valert from "../views/components/alert.vue";
+import Vprojectmanagement from "../views/components/projectmanagement.vue";
 import Vaccrodion from "../views/components/accordion.vue";
 import Vbadges from "../views/components/badges.vue";
 import Vbreadcumb from "../views/components/breadcumbs.vue";
 import Vbutton from "../views/components/button.vue";
 import Vcard from "../views/components/card.vue";
-var appname = " - Windzo Dashboard Admin Template";
+var appname = "Human Machine Interaction";
 
 const routes = [
   // Routes
@@ -22,10 +22,10 @@ const routes = [
 
   // Components based Routes
   {
-    path: "/component/alert",
-    name: "Valert",
-    component: Valert,
-    meta: { title: "Alert" + appname },
+    path: "/component/projectmanagement",
+    name: "Vprojectmanagement",
+    component: Vprojectmanagement,
+    meta: { title: "Project Management" + appname },
   },
   {
     path: "/component/accordion",

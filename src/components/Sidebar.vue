@@ -8,7 +8,7 @@
           class="text-2xl font-normal text-gray-800 dark:text-gray-500"
           translate="no"
         >
-          Windzo<span class="text-primary">.</span>
+          Human Machine Interaction<span class="text-primary"></span>
           <span
             class="bg-gray-700 absolute mt-2 dark:block hidden rounded-md py-1 px-2 text-xs text-gray-200"
             >Dark mode</span
@@ -51,18 +51,19 @@
             <template v-slot:icon>
               <Icon icon="gg:components" />
             </template>
-            <template v-slot:title> Components </template>
+            <template v-slot:title> Course </template>
             <template v-slot:content>
               <router-link
-                to="/component/alert"
+                to="/component/projectmanagement"
                 class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                Alert
+                Project Management
               </router-link>
               <router-link
                 to="/component/accordion"
                 class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
+              
                 Accordion
               </router-link>
               <router-link
@@ -127,66 +128,6 @@
             </template>
           </menu-accordion>
         </div>
-        <div class="item mt-3">
-          <menu-accordion>
-            <template v-slot:icon>
-              <Icon icon="bi:layout-wtf" />
-            </template>
-            <template v-slot:title> Layouts </template>
-            <template v-slot:content>
-              <button
-                class="w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Coming Soon
-              </button>
-            </template>
-          </menu-accordion>
-        </div>
-      </div>
-      <p class="font-medium text-gray-400 mt-4 dark:text-gray-600">
-        UI Form & Tables
-      </p>
-
-      <div class="item mt-3">
-        <menu-accordion>
-          <template v-slot:icon>
-            <Icon icon="ant-design:form-outlined" />
-          </template>
-          <template v-slot:title> Form Element </template>
-          <template v-slot:content> </template>
-        </menu-accordion>
-      </div>
-
-      <div class="item mt-3">
-        <menu-accordion>
-          <template v-slot:icon>
-            <Icon icon="mdi:form-textbox" />
-          </template>
-          <template v-slot:title> Form Editor </template>
-          <template v-slot:content> </template>
-        </menu-accordion>
-      </div>
-      <div class="item mt-3">
-        <router-link to="/">
-          <button
-            class="text-gray-800 dark:text-gray-500 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 w-full flex text-left rounded-md box-border p-3"
-          >
-            <span class="mr-3 text-xl"><Icon icon="bi:table" /></span>
-            <span class="w-full"> Table </span>
-            <span class="box-border mt-1 text-gray-500"> </span>
-          </button>
-        </router-link>
-      </div>
-      <div class="item mt-3">
-        <router-link to="/">
-          <button
-            class="text-gray-800 dark:text-gray-500 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 w-full flex text-left rounded-md box-border p-3"
-          >
-            <span class="mr-3 text-xl"><Icon icon="carbon:data-table" /></span>
-            <span class="w-full"> DataTables </span>
-            <span class="box-border mt-1 text-gray-500"> </span>
-          </button>
-        </router-link>
       </div>
     </div>
   </nav>

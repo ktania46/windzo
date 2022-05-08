@@ -29,7 +29,7 @@
         <h2
           class="text-md text-indigo-800 ml-3 lg:block hidden px-5 p-2 rounded-md bg-indigo-200"
         >
-          Welcome back, Mohammad Sahrullah
+          Welcome back, Admin
         </h2>
       </div>
       <div class="mr-5 flex">
@@ -84,7 +84,7 @@
             class="user-avatar flex hover:bg-gray-100 dark:hover:bg-gray-700 p-1 cursor-pointer rounded-md"
           >
             <img
-              src="../assets/img/user.jpg"
+              src="../assets/img/admin.png"
               class="rounded-full mr-4 w-10 h-10 p-1 ring-1 ring-gray-300 dark:ring-gray-500"
               alt=""
             />
@@ -102,7 +102,7 @@
           >
             <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
               <div>Logged As</div>
-              <div class="font-medium truncate">Moh Sahrullah</div>
+              <div class="font-medium truncate">Adim</div>
             </div>
             <ul
               class="py-1 text-sm text-gray-700 dark:text-gray-200"

@@ -36,8 +36,8 @@
       Scrollbar.init(document.querySelector("#body-scroll"));
 
       setTimeout(() => {
-        var alert_dis = document.querySelectorAll(".alert-dismiss");
-        alert_dis.forEach((x) =>
+        var projectmanagement_dis = document.querySelectorAll(".projectmanagement-dismiss");
+        projectmanagement_dis.forEach((x) =>
           x.addEventListener("click", function () {
             x.parentElement.classList.add("hidden");
           })

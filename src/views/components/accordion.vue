@@ -39,7 +39,7 @@
             <a
               href="#"
               class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-              >Components</a
+              >Course</a
             >
           </div>
         </li>
@@ -78,7 +78,7 @@
     </div>
 
     <div class="grid lg:grid-cols-1 grid-col-1 gap-4 mt-5">
-      <!-- default alert  -->
+      <!-- default projectmanagement  -->
       <div
         class="card col-span-1 grid grid-cols-1 gap-5 bg-white dark:bg-gray-800 w-full rounded-md p-5 shadow"
       >
