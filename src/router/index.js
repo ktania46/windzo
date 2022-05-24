@@ -9,6 +9,7 @@ import Vbadges from "../views/components/badges.vue";
 import Vbreadcumb from "../views/components/breadcumbs.vue";
 import Vbutton from "../views/components/button.vue";
 import Vcard from "../views/components/card.vue";
+import Vexamination from "../views/components/examination.vue";
 var appname = "Human Machine Interaction";
 
 const routes = [
@@ -44,6 +45,12 @@ const routes = [
     name: "Vbreadcumb",
     component: Vbreadcumb,
     meta: { title: "Breadcumb" + appname },
+  },
+    {
+    path: "/component/examination",
+    name: "Vexamination",
+    component: Vexamination,
+    meta: { title: "Examination" + appname },
   },
   {
     path: "/component/button",
