@@ -67,12 +67,12 @@
       </ol>
     </nav>
     <!-- end nav -->
-        
+
     <div class="grid grid-cols-1 mt-10 gap-5">
       <div class="card w-full p-5 rounded-md bg-white dark:bg-gray-800">
         <h2 class="text-lg font-lexend dark:text-gray-200">
           Student Evaluation
-    <DoughnutChart v-bind="doughnutChartProps" />
+          <DoughnutChart v-bind="doughnutChartProps" />
         </h2>
       </div>
     </div>
@@ -155,6 +155,19 @@ export default defineComponent({
   },
   components: {
     DoughnutChart,
+  },
+  async created() {
+    // Simple GET request using fetch
+    const response = await fetch("http://localho.st:8080/exams", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    const getExams = await response.json();
+    console.log(getExams);
   },
 });
 </script>
