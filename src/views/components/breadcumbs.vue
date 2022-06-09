@@ -158,16 +158,26 @@ export default defineComponent({
   },
   async created() {
     // Simple GET request using fetch
-    const response = await fetch("http://localho.st:8080/exams", {
+    /*const response = await fetch("https://hmiapi.cr4.live/exams", {
       method: "GET",
-      mode: "cors",
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Authorization": "Basic SE1JOjNDQzZraGFmRzA="
       },
-    });
+    });*/
+   async function test() {
+  const api_call = await fetch(`httpshmiapi.cr4.live/exams`);
+  console.log(api_call.status);
+}
 
-    const getExams = await response.json();
-    console.log(getExams);
-  },
+test(); 
+ /*    async function fetchAsync (url){
+      let response= await fetch("httpshmiapi.cr4.live/exams");
+      let data = await response.json();
+      return data;
+    }
+    fetchAsync()
+    .then(data => console.log(data))
+    .catch(reason =>console.log(reason.message))*/
+  }, 
 });
 </script>
