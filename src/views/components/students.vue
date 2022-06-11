@@ -101,38 +101,6 @@ import { Icon } from "@iconify/vue";
 import { reactive } from "vue";
 import TableLite from "vue3-table-lite";
 
-//my first try to use fetch. it gives error and I don't really understand how to implement it
-//copied from this tutorial:
-//https://www.javascripttutorial.net/javascript-fetch-api/#:~:text=The%20Fetch%20API%20allows%20you,resolve%20into%20the%20actual%20data.
-
-async function fetchText() {
-    let response = await fetch('https://hmiapi.cr4.live/exams/SoSe22-PrjMan/students',{
-          mode: 'no-cors',
-          method: "GET",
-          credentials: 'omit', //if you use credentials 'include' you will not get an error but no result appearstoo
-          headers: new Headers({
-        'Authorization': 'Basic '+btoa('HMI:3CC6khafG0'), 
-        'Content-Type': 'text/plain'
-    }) 
-    });
-
-//this option gives Request cannot be constructed from a URL that includes credentials: https://HMI:3CC6khafG0@hmiapi.cr4.live/exams
-    //     let response = await fetch('https://HMI:3CC6khafG0@hmiapi.cr4.live/exams',{ 
-    //       mode: 'no-cors'
-    // }); 
-
-    console.log("status " + response.status); 
-    console.log(response.statusText); 
-
-    if (response.status === 200) {
-        let data = await response.text();
-        // handle data
-    }
-}
-
-fetchText();
-
-
 // Fake Data for 'asc' sortable
 const sampleData1 = (offst, limit) => {
   offst = offst + 1;
@@ -178,36 +146,60 @@ export default {
       isLoading: false,
       columns: [
         {
-          label: "Question number",
+          label: "Enrollment Number",
           field: "id",
           width: "3%",
           sortable: true,
           isKey: true,
         },
         {
-          label: "Question name",
-          field: "qname",
+          label: "Language",
+          field: "language",
           width: "10%",
-          sortable: false,
+          sortable: true,
         },
 		{
-          label: "Correct answer",
-          field: "canswer",
+          label: "Number of Questions answered",
+          field: "answered",
           width: "15%",
-          sortable: false,
+          sortable: true,
         },
 		{
-          label: "Given answer",
-          field: "ganswer",
+          label: "Passed or not",
+          field: "passed",
           width: "15%",
-          sortable: false,
+          sortable: true,
+        },
+      ],
+      rows: [],
+      totalRecordCount: 0,
+      sortable: {
+        order: "id",
+        sort: "asc",
+      },
+    });
+    const table1 = reactive({
+      isLoading: false,
+      columns: [
+        {
+          label: "ID",
+          field: "id",
+          width: "3%",
+          sortable: true,
+          isKey: true,
         },
         {
-      label: "Points std/max",
-      field: "points",
-      width: "15%",
-      sortable: false,
-    },
+          label: "Name",
+          field: "name",
+          width: "10%",
+          sortable: true,
+        },
+        {
+          label: "Email",
+          field: "email",
+          width: "15%",
+          sortable: true,
+        },
       ],
       rows: [],
       totalRecordCount: 0,

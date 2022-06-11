@@ -76,7 +76,11 @@
         Here you can observe all examination info for a chosen subject.
       </p>
     </div>
-	
+    
+<div class="mt-5 w-full">
+  <h1 class="text-1xl text-gray-900 font-medium dark:text-gray-200">Please select a student</h1>
+</div>
+
   <div class="m-4">
     <table-lite
       :is-loading="table.isLoading"
@@ -94,12 +98,87 @@
 </template>
 
 
-
 <script>
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
 import { reactive } from "vue";
 import TableLite from "vue3-table-lite";
+
+//my first try to use fetch. it gives error and I don't really understand how to implement it
+//copied from this tutorial:
+//https://www.javascripttutorial.net/javascript-fetch-api/#:~:text=The%20Fetch%20API%20allows%20you,resolve%20into%20the%20actual%20data.
+
+// fetch("https://hmiapi.cr4.live/exams", {
+//   "method": "GET",
+//   "headers": {
+//     "Authorization": "Basic SE1JOjNDQzZraGFmRzA="
+//   }
+// })
+// .then(response => response.json())
+// .then(data => console.log(data))
+// .catch(err => {
+//   console.error(err);
+// });
+
+
+// import axios from "axios";
+
+// const options = {
+//   url: 'https://hmiapi.cr4.live/exams'
+// };
+
+// axios.get(options.url, {}, {
+//   auth: {
+//     username: "HMI",
+//     password: "3CC6khafG0"
+//   }
+// }).then(function (response) {
+//   console.log(response.data);
+// }).catch(function (error) {
+//   console.error(error);
+// });
+
+
+
+
+// import axios from "axios";
+
+// const options = {
+//   method: 'GET',
+//   url: 'https://HMI:3CC6khafG0@hmiapi.cr4.live/exams'
+// };
+
+// axios.request(options).then(function (response) {
+//   console.log(response.data);
+// }).catch(function (error) {
+//   console.error(error);
+// });
+
+//this option gives Request cannot be constructed from a URL that includes credentials: https://HMI:3CC6khafG0@hmiapi.cr4.live/exams
+    //     let response = await fetch('https://HMI:3CC6khafG0@hmiapi.cr4.live/exams',{ 
+    //       mode: 'no-cors'
+    // }); 
+    //console.log("status " + response.status); 
+    //console.log(response.statusText); 
+
+//     if (response.status === 200) {
+//         let data = await response.text();
+//         // handle data
+//     }
+fetch("https://hmiapi.cr4.live/exams", {
+  "method": "GET",
+  "headers": {
+    "Authorization": "Basic SE1JOjNDQzZraGFmRzA="
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(err => {
+  console.error(err);
+});
+
+// fetchText();
+
 
 // Fake Data for 'asc' sortable
 const sampleData1 = (offst, limit) => {
@@ -146,60 +225,36 @@ export default {
       isLoading: false,
       columns: [
         {
-          label: "Enrollment Number",
+          label: "Question number",
           field: "id",
           width: "3%",
           sortable: true,
           isKey: true,
         },
         {
-          label: "Language",
-          field: "language",
+          label: "Question name",
+          field: "qname",
           width: "10%",
-          sortable: true,
+          sortable: false,
         },
 		{
-          label: "Number of Questions answered",
-          field: "answered",
+          label: "Correct answer",
+          field: "canswer",
           width: "15%",
-          sortable: true,
+          sortable: false,
         },
 		{
-          label: "Passed or not",
-          field: "passed",
+          label: "Given answer",
+          field: "ganswer",
           width: "15%",
-          sortable: true,
-        },
-      ],
-      rows: [],
-      totalRecordCount: 0,
-      sortable: {
-        order: "id",
-        sort: "asc",
-      },
-    });
-    const table1 = reactive({
-      isLoading: false,
-      columns: [
-        {
-          label: "ID",
-          field: "id",
-          width: "3%",
-          sortable: true,
-          isKey: true,
+          sortable: false,
         },
         {
-          label: "Name",
-          field: "name",
-          width: "10%",
-          sortable: true,
-        },
-        {
-          label: "Email",
-          field: "email",
-          width: "15%",
-          sortable: true,
-        },
+      label: "Points std/max",
+      field: "points",
+      width: "15%",
+      sortable: false,
+    },
       ],
       rows: [],
       totalRecordCount: 0,
