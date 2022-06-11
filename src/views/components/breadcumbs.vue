@@ -82,7 +82,7 @@
 import { computed, defineComponent, ref } from "vue";
 import { DoughnutChart, useDoughnutChart } from "vue-chart-3";
 import { Chart, ChartData, ChartOptions, registerables } from "chart.js";
-
+import axios from 'axios'
 Chart.register(...registerables);
 export default defineComponent({
   name: "BreadCumbs",
@@ -164,12 +164,19 @@ export default defineComponent({
         "Authorization": "Basic SE1JOjNDQzZraGFmRzA="
       },
     });*/
-   async function test() {
-  const api_call = await fetch(`httpshmiapi.cr4.live/exams`);
+  async function test() {
+  const api_call = await fetch('https://HMI:3CC6khafG0@hmiapi.cr4.live/exams');
   console.log(api_call.status);
 }
+async function ariaTest() {
+  axios.get('http://127.0.0.1:8080/exams').then
+  ((response)=> {
+    console.log(response);
+  })
+  .catch((err)=> console.log(err))
+}
 
-test(); 
+ariaTest(); 
  /*    async function fetchAsync (url){
       let response= await fetch("httpshmiapi.cr4.live/exams");
       let data = await response.json();
