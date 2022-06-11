@@ -1,8 +1,8 @@
 <template>
-  <!-- Search component Examination with name of type, press Ctrl + F -->
+  <!-- Search component Students with name of type, press Ctrl + F -->
 
-  <div class="Examination h-auto p-3">
-    <nav class="flex" aria-label="Examination">
+  <div class="Students h-auto p-3">
+    <nav class="flex" aria-label="Students">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -60,7 +60,7 @@
             <a
               href="#"
               class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-              >Examination</a
+              >Students</a
             >
           </div>
         </li>
@@ -70,17 +70,13 @@
 	
 	<div class="mt-5 w-full">
       <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
-        Examination info
+        Students info
       </h1>
       <p class="mt-1 text-sm font-normal text-gray-400">
-        Here you can observe all examination info for a chosen subject.
+        Here you can observe all Students info for a chosen subject.
       </p>
     </div>
-    
-<div class="mt-5 w-full">
-  <h1 class="text-1xl text-gray-900 font-medium dark:text-gray-200">Please select a student</h1>
-</div>
-
+	
   <div class="m-4">
     <table-lite
       :is-loading="table.isLoading"
@@ -98,87 +94,12 @@
 </template>
 
 
+
 <script>
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
 import { reactive } from "vue";
 import TableLite from "vue3-table-lite";
-
-//my first try to use fetch. it gives error and I don't really understand how to implement it
-//copied from this tutorial:
-//https://www.javascripttutorial.net/javascript-fetch-api/#:~:text=The%20Fetch%20API%20allows%20you,resolve%20into%20the%20actual%20data.
-
-// fetch("https://hmiapi.cr4.live/exams", {
-//   "method": "GET",
-//   "headers": {
-//     "Authorization": "Basic SE1JOjNDQzZraGFmRzA="
-//   }
-// })
-// .then(response => response.json())
-// .then(data => console.log(data))
-// .catch(err => {
-//   console.error(err);
-// });
-
-
-// import axios from "axios";
-
-// const options = {
-//   url: 'https://hmiapi.cr4.live/exams'
-// };
-
-// axios.get(options.url, {}, {
-//   auth: {
-//     username: "HMI",
-//     password: "3CC6khafG0"
-//   }
-// }).then(function (response) {
-//   console.log(response.data);
-// }).catch(function (error) {
-//   console.error(error);
-// });
-
-
-
-
-// import axios from "axios";
-
-// const options = {
-//   method: 'GET',
-//   url: 'https://HMI:3CC6khafG0@hmiapi.cr4.live/exams'
-// };
-
-// axios.request(options).then(function (response) {
-//   console.log(response.data);
-// }).catch(function (error) {
-//   console.error(error);
-// });
-
-//this option gives Request cannot be constructed from a URL that includes credentials: https://HMI:3CC6khafG0@hmiapi.cr4.live/exams
-    //     let response = await fetch('https://HMI:3CC6khafG0@hmiapi.cr4.live/exams',{ 
-    //       mode: 'no-cors'
-    // }); 
-    //console.log("status " + response.status); 
-    //console.log(response.statusText); 
-
-//     if (response.status === 200) {
-//         let data = await response.text();
-//         // handle data
-//     }
-fetch("https://hmiapi.cr4.live/exams", {
-  "method": "GET",
-  "headers": {
-    "Authorization": "Basic SE1JOjNDQzZraGFmRzA="
-  }
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(err => {
-  console.error(err);
-});
-
-// fetchText();
-
 
 // Fake Data for 'asc' sortable
 const sampleData1 = (offst, limit) => {
@@ -225,36 +146,60 @@ export default {
       isLoading: false,
       columns: [
         {
-          label: "Question number",
+          label: "Enrollment Number",
           field: "id",
           width: "3%",
           sortable: true,
           isKey: true,
         },
         {
-          label: "Question name",
-          field: "qname",
+          label: "Language",
+          field: "language",
           width: "10%",
-          sortable: false,
+          sortable: true,
         },
 		{
-          label: "Correct answer",
-          field: "canswer",
+          label: "Number of Questions answered",
+          field: "answered",
           width: "15%",
-          sortable: false,
+          sortable: true,
         },
 		{
-          label: "Given answer",
-          field: "ganswer",
+          label: "Passed or not",
+          field: "passed",
           width: "15%",
-          sortable: false,
+          sortable: true,
+        },
+      ],
+      rows: [],
+      totalRecordCount: 0,
+      sortable: {
+        order: "id",
+        sort: "asc",
+      },
+    });
+    const table1 = reactive({
+      isLoading: false,
+      columns: [
+        {
+          label: "ID",
+          field: "id",
+          width: "3%",
+          sortable: true,
+          isKey: true,
         },
         {
-      label: "Points std/max",
-      field: "points",
-      width: "15%",
-      sortable: false,
-    },
+          label: "Name",
+          field: "name",
+          width: "10%",
+          sortable: true,
+        },
+        {
+          label: "Email",
+          field: "email",
+          width: "15%",
+          sortable: true,
+        },
       ],
       rows: [],
       totalRecordCount: 0,

@@ -61,7 +61,7 @@
                   <template v-slot:title> Project Management </template>
                   <template v-slot:content>
                     <router-link
-                      to="/component/card"
+                      to="/component/students"
                       class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
                       Students
