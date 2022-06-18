@@ -102,23 +102,27 @@ import { reactive } from "vue";
 import TableLite from "vue3-table-lite";
 
 // Fake Data for 'asc' sortable
-const sampleData1 = (offst, limit) => {
-  offst = offst + 1;
-  let data = [];
-  var language = ['German','English'];
-  var passed = ['passed','failed'];
-  for (let i = offst; i <= limit; i++) {
-  	var a = Math.floor(Math.random() * 2);
-	var b = Math.floor(Math.random() * 2);
-    data.push({
-      id: i,
-      language: language[a],
-      answered: Math.floor(Math.random() * 30),
-	  passed: passed[b]
-    });
-  }
-  return data;
-};
+  async function sampleData1(offst, limit) {
+  return await axios.get('http://127.0.0.1:8080/exams/project management/students/1/reports').then
+  ((response)=> {
+    let data = [];
+    console.log(response.data['questions']);
+    console.log("size " + response.data['questions'].length);
+    offst = offst + 1;
+    for (let i = offst; i <= limit; i++) {
+      data.push({
+        id: response.data['questions'][i-1]['questionID'],
+        qname: response.data['questions'][i-1]['question'],
+        canswer: response.data['questions'][i-1]['correct'],
+        ganswer: response.data['questions'][i-1]['answer'],
+        points: response.data['questions'][i-1]['stdPoints']+"/"+response.data['questions'][i-1]['maxPoints']
+      });
+    }
+    console.log(data);
+    return data;
+  })
+  .catch((err)=> console.log(err))
+}
 
 // Fake Data for 'desc' sortable
 const sampleData2 = (offst, limit) => {
