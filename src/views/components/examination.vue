@@ -79,6 +79,8 @@
     
 <div class="mt-5 w-full">
   <h1 class="text-1xl text-gray-900 font-medium dark:text-gray-200">Please select a student</h1>
+<input v-model="text">   <button type="button" @click="chooseStd">Submit</button>
+{{ text }} this is text
 </div>
 
   <div class="m-4">
@@ -99,6 +101,8 @@
 
 
 <script>
+
+
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
 import { reactive } from "vue";
@@ -126,8 +130,13 @@ var questions;
 
 // Fake Data for 'asc' sortable
 
-  async function sampleData1(offst, limit) {
-  return await axios.get('http://127.0.0.1:8080/exams/project management/students/1/reports').then
+function chooseStd(){
+console.log("did it");
+return true;
+}
+
+  async function sampleData1(offst, limit, std) {
+  return await axios.get('http://127.0.0.1:8080/exams/project management/students/'+std+'/reports').then
   ((response)=> {
     let data = [];
     console.log(response.data['questions']);
@@ -195,20 +204,20 @@ export default {
     /**
      * Search Event
      */
-   async function doSearch(offset, limit, order, sort) {
+   async function doSearch(offset, limit, order, sort, std) {
       table.isLoading = true;
         table.isReSearch = offset == undefined ? true : false;
         if (offset >= 10) {
           limit = offset+10;
         }
-        table.rows = await sampleData1(offset, limit);
+        table.rows = await sampleData1(offset, limit, std);
         table.totalRecordCount = 47;
         table.sortable.order = order;
         table.sortable.sort = sort;
     };
 
     // First get data
-    doSearch(0, 10, "id", "asc");
+    //doSearch(0, 10, "id", "asc", 5);
 
     return {
       table,
@@ -237,12 +246,20 @@ export default {
           data: [30, 40, 45, 50, 49, 60, 70, 91],
         },
       ],
+      text: '',
     };
     // end chart data line
   },
   components: {
     Icon,
     TableLite,
+  },
+    methods: {
+    chooseStd: function () {
+      console.log("HI!" + this.text);
+      this.doSearch(0, 10, "id", "asc", this.text);
+
+    },
   },
   mounted() {},
 };
