@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard p-4">
-    <nav class="flex" aria-label="Breadcrumb">
+    <nav class="flex" aria-label="Evaluation">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a

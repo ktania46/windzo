@@ -23,10 +23,6 @@
   import Footer from "@/components/Footer";
   // npm-js
   import Scrollbar from "smooth-scrollbar";
-  import * as Vue from 'vue' // in Vue 3
-  import axios from 'axios'
-  import VueAxios from 'vue-axios'
-
   export default {
     name: "App",
 
@@ -46,24 +42,6 @@
           })
         );
       }, 100);
-
-      // var acc = document.getElementsByClassName("accordion");
-      // var i;
-      // for (i = 0; i < acc.length; i++) {
-      //   acc[i].addEventListener("click", function () {
-      //     this.classList.toggle("active");
-      //     var panel = this.nextElementSibling;
-      //     if (panel.style.display === "block") {
-      //       panel.style.display = "none";
-      //       this.classList.remove("bg-gray-100");
-      //       this.classList.add("bg-transparent");
-      //     } else {
-      //       panel.style.display = "block";
-      //       this.classList.add("bg-gray-100");
-      //       this.classList.remove("bg-transparent");
-      //     }
-      //   });
-      // }
     },
   };
 </script>

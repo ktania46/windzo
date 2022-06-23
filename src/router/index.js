@@ -6,7 +6,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Vprojectmanagement from "../views/components/projectmanagement.vue";
 import Vaccrodion from "../views/components/accordion.vue";
 import Vbadges from "../views/components/badges.vue";
-import Vbreadcumb from "../views/components/breadcumbs.vue";
+import Vevaluation from "../views/components/evaluation.vue";
 import Vbutton from "../views/components/button.vue";
 import Vcard from "../views/components/card.vue";
 import Vexamination from "../views/components/examination.vue";
@@ -42,10 +42,10 @@ const routes = [
     meta: { title: "Badge" + appname },
   },
   {
-    path: "/component/breadcumb",
-    name: "Vbreadcumb",
-    component: Vbreadcumb,
-    meta: { title: "Breadcumb" + appname },
+    path: "/component/evaluation",
+    name: "Vevaluation",
+    component: Vevaluation,
+    meta: { title: "Evaluation" + appname },
   },
   {
     path: "/component/students",

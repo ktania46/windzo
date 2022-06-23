@@ -17,6 +17,8 @@
   "author": "Mohammad Sahrullah",
   "license": "MIT",
   "dependencies": {
+    "@vuelidate/core": "^2.0.0-alpha.41",
+    "@vuelidate/validators": "^2.0.0-alpha.29",
     "apexcharts": "^3.34.0",
     "autoprefixer": "^10",
     "axios": "^0.27.2",
@@ -34,6 +36,7 @@
     "vue-chart-3": "^3.1.8",
     "vue-chartjs": "^4.0.2",
     "vue-perfect-scrollbar": "^0.2.1",
+    "vue-r-mask": "^1.2.3",
     "vue-router": "^4.0.3",
     "vue3-apexcharts": "^1.4.1",
     "vue3-perfect-scrollbar": "^1.6.0",

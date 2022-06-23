@@ -67,8 +67,8 @@
       </ol>
     </nav>
     <!-- end nav -->
-	
-	<div class="mt-5 w-full">
+
+    <div class="mt-5 w-full">
       <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
         Examination info
       </h1>
@@ -76,27 +76,41 @@
         Here you can observe all examination info for a chosen subject.
       </p>
     </div>
-    
-<div class="mt-5 w-full">
-  <h1 class="text-1xl text-gray-900 font-medium dark:text-gray-200">Please select a student</h1>
-</div>
+    <br />
+    <div class="mt-5 w-full">
+      <h1 class="text-1xl text-gray-900 font-medium dark:text-gray-200">
+        Please select a student
+      </h1>
+      <br />
+      <input
+        class="text-1xl text-gray-900 font-medium dark:text-gray-200"
+        v-model="text"
+      />
+      <br />
+      <br />
+      Answers for student with ID: {{ text }} <br /><br /><button
+        type="button"
+        class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        @click="chooseStd"
+      >
+        Submit
+      </button>
+    </div>
 
-  <div class="m-4">
-    <table-lite
-      :is-loading="table.isLoading"
-      :columns="table.columns"
-      :rows="table.rows"
-      :total="table.totalRecordCount"
-      :sortable="table.sortable"
-      :messages="table.messages"
-      @do-search="doSearch"
-      @is-finished="table.isLoading = false"
-    />
-  </div>
-
+    <div class="m-4">
+      <table-lite
+        :is-loading="table.isLoading"
+        :columns="table.columns"
+        :rows="table.rows"
+        :total="table.totalRecordCount"
+        :sortable="table.sortable"
+        :messages="table.messages"
+        @do-search="doSearch"
+        @is-finished="table.isLoading = false"
+      />
+    </div>
   </div>
 </template>
-
 
 <script>
 // @ is an alias to /src
@@ -104,118 +118,47 @@ import { Icon } from "@iconify/vue";
 import { reactive } from "vue";
 import TableLite from "vue3-table-lite";
 
-//my first try to use fetch. it gives error and I don't really understand how to implement it
-//copied from this tutorial:
-//https://www.javascripttutorial.net/javascript-fetch-api/#:~:text=The%20Fetch%20API%20allows%20you,resolve%20into%20the%20actual%20data.
+import axios from "axios";
 
-// fetch("https://hmiapi.cr4.live/exams", {
-//   "method": "GET",
-//   "headers": {
-//     "Authorization": "Basic SE1JOjNDQzZraGFmRzA="
-//   }
-// })
-// .then(response => response.json())
-// .then(data => console.log(data))
-// .catch(err => {
-//   console.error(err);
-// });
-
-
-// import axios from "axios";
-
-// const options = {
-//   url: 'https://hmiapi.cr4.live/exams'
-// };
-
-// axios.get(options.url, {}, {
-//   auth: {
-//     username: "HMI",
-//     password: "3CC6khafG0"
-//   }
-// }).then(function (response) {
-//   console.log(response.data);
-// }).catch(function (error) {
-//   console.error(error);
-// });
-
-
-
-
-// import axios from "axios";
-
-// const options = {
-//   method: 'GET',
-//   url: 'https://HMI:3CC6khafG0@hmiapi.cr4.live/exams'
-// };
-
-// axios.request(options).then(function (response) {
-//   console.log(response.data);
-// }).catch(function (error) {
-//   console.error(error);
-// });
-
-//this option gives Request cannot be constructed from a URL that includes credentials: https://HMI:3CC6khafG0@hmiapi.cr4.live/exams
-    //     let response = await fetch('https://HMI:3CC6khafG0@hmiapi.cr4.live/exams',{ 
-    //       mode: 'no-cors'
-    // }); 
-    //console.log("status " + response.status); 
-    //console.log(response.statusText); 
-
-//     if (response.status === 200) {
-//         let data = await response.text();
-//         // handle data
-//     }
-fetch("https://hmiapi.cr4.live/exams", {
-  "method": "GET",
-  "headers": {
-    "Authorization": "Basic SE1JOjNDQzZraGFmRzA="
-  }
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(err => {
-  console.error(err);
-});
-
-// fetchText();
-
+var questions;
 
 // Fake Data for 'asc' sortable
-const sampleData1 = (offst, limit) => {
-  offst = offst + 1;
-  let data = [];
-  var language = ['German','English'];
-  var passed = ['passed','failed'];
-  for (let i = offst; i <= limit; i++) {
-  	var a = Math.floor(Math.random() * 2);
-	var b = Math.floor(Math.random() * 2);
-    data.push({
-      id: i,
-      language: language[a],
-      answered: Math.floor(Math.random() * 30),
-	  passed: passed[b]
-    });
-  }
-  return data;
-};
 
-// Fake Data for 'desc' sortable
-const sampleData2 = (offst, limit) => {
-  let data = [];
-  var language = ['German','English'];
-  var passed = ['passed','failed'];
-  for (let i = limit; i > offst; i--) {
-	var a = Math.floor(Math.random() * 2);
-	var b = Math.floor(Math.random() * 2);
-    data.push({
-      id: i,
-      language: language[a],
-      answered: Math.floor(Math.random() * 30),
-	  passed: passed[b]
-    });
-  }
-  return data;
-};
+function chooseStd() {
+  console.log("did it");
+  return true;
+}
+
+async function sampleData1(offst, limit, std) {
+  return await axios
+    .get(
+      "http://127.0.0.1:8080/exams/project management/students/" +
+        std +
+        "/reports"
+    )
+    .then((response) => {
+      let data = [];
+      console.log(response.data["questions"]);
+      console.log("size " + response.data["questions"].length);
+      console.log(offst + "DAAD" + limit);
+      offst = offst + 1;
+      for (let i = offst; i <= limit; i++) {
+        data.push({
+          id: response.data["questions"][i - 1]["questionID"],
+          qname: response.data["questions"][i - 1]["question"],
+          canswer: response.data["questions"][i - 1]["correct"],
+          ganswer: response.data["questions"][i - 1]["answer"],
+          points:
+            response.data["questions"][i - 1]["stdPoints"] +
+            "/" +
+            response.data["questions"][i - 1]["maxPoints"],
+        });
+      }
+      console.log(data);
+      return data;
+    })
+    .catch((err) => console.log(err));
+}
 
 export default {
   name: "Dashboard",
@@ -228,36 +171,32 @@ export default {
           label: "Question number",
           field: "id",
           width: "3%",
-          sortable: true,
           isKey: true,
+          sortable: true,
         },
         {
           label: "Question name",
           field: "qname",
-          width: "10%",
-          sortable: false,
+          width: "20%",
         },
-		{
+        {
           label: "Correct answer",
           field: "canswer",
           width: "15%",
-          sortable: false,
         },
-		{
+        {
           label: "Given answer",
           field: "ganswer",
           width: "15%",
-          sortable: false,
         },
         {
-      label: "Points std/max",
-      field: "points",
-      width: "15%",
-      sortable: false,
-    },
+          label: "Points std/max",
+          field: "points",
+          width: "5%",
+        },
       ],
       rows: [],
-      totalRecordCount: 0,
+      totalRecordCount: 50,
       sortable: {
         order: "id",
         sort: "asc",
@@ -267,38 +206,28 @@ export default {
     /**
      * Search Event
      */
-    const doSearch = (offset, limit, order, sort) => {
-      console.log("Ekas")
+    async function doSearch(offset, limit, order, sort, std) {
       table.isLoading = true;
-      setTimeout(() => {
-        table.isReSearch = offset == undefined ? true : false;
-        if (offset >= 10 || limit >= 20) {
-          limit = 20;
-        }
-        if (sort == "asc") {
-          table.rows = sampleData1(offset, limit);
-        } else {
-          table.rows = sampleData2(offset, limit);
-        }
-        table.totalRecordCount = 20;
-        table.sortable.order = order;
-        table.sortable.sort = sort;
-      }, 600);
-    };
+      table.isReSearch = offset == undefined ? true : false;
+      if (offset >= 10) {
+        limit = offset + 10;
+      }
+      table.rows = await sampleData1(offset, limit, std);
+      table.totalRecordCount = 47;
+      table.sortable.order = order;
+      table.sortable.sort = sort;
+    }
 
     // First get data
-    doSearch(0, 10, "id", "asc");
+    //doSearch(0, 10, "id", "asc", 5);
 
     return {
       table,
-      doSearch
+      doSearch,
     };
   },
   data() {
     return {
-      // for more guide apexchart.js
-      // https://apexcharts.com/docs/chart-types/line-chart/
-
       // chart data line
       optionsLine: {
         chart: {
@@ -319,12 +248,19 @@ export default {
           data: [30, 40, 45, 50, 49, 60, 70, 91],
         },
       ],
+      text: "",
     };
     // end chart data line
   },
   components: {
     Icon,
     TableLite,
+  },
+  methods: {
+    chooseStd: function () {
+      console.log("HI!" + this.text);
+      this.doSearch(0, 10, "id", "asc", this.text);
+    },
   },
   mounted() {},
 };

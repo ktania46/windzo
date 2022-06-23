@@ -2,7 +2,7 @@
   <!-- Search component Badge with name of type, press Ctrl + F -->
 
   <div class="Badge h-auto p-3">
-    <nav class="flex" aria-label="Breadcrumb">
+    <nav class="flex" aria-label="Evaluation">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a

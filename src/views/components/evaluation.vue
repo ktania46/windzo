@@ -1,8 +1,29 @@
 <template>
   <!-- Search component Breadcumb with name of type  press Ctrl + F -->
-
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <div class="grid grid-cols-1 mt-16 gap-5">
+      <div class="card w-full p-5 rounded-md bg-white dark:bg-gray-800">
+        <h2 class="text-lg font-lexend dark:text-gray-200">
+          Edit Student Score
+        </h2>
+        <form @submit.prevent="onUpdateForm">
+          <div class="mb-12">
+            <input v-model="message" placeholder="Enter student ID" />
+          </div>
+          <button
+            type="button"
+            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          >
+            click here to edit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
   <div class="beadcumb h-auto p-3">
-    <nav class="flex" aria-label="Breadcrumb">
+    <nav class="flex" aria-label="Evaluation">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -82,10 +103,10 @@
 import { computed, defineComponent, ref } from "vue";
 import { DoughnutChart, useDoughnutChart } from "vue-chart-3";
 import { Chart, ChartData, ChartOptions, registerables } from "chart.js";
-import axios from 'axios'
+import axios from "axios";
 Chart.register(...registerables);
 export default defineComponent({
-  name: "BreadCumbs",
+  name: "evaluation",
   setup() {
     const dataValues = ref([30, 40, 60, 70, 5]);
     const dataLabels = ref(["Paris", "Nîmes", "Toulon", "Perpignan", "Autre"]);
@@ -153,38 +174,28 @@ export default defineComponent({
       doughnutChartProps,
     };
   },
+  data() {
+    return {
+      student: {},
+    };
+  },
   components: {
     DoughnutChart,
   },
   async created() {
-    // Simple GET request using fetch
-    /*const response = await fetch("https://hmiapi.cr4.live/exams", {
-      method: "GET",
-      headers: {
-        "Authorization": "Basic SE1JOjNDQzZraGFmRzA="
-      },
-    });*/
-  async function test() {
-  const api_call = await fetch('https://HMI:3CC6khafG0@hmiapi.cr4.live/exams');
-  console.log(api_call.status);
-}
-async function ariaTest() {
-  axios.get('http://127.0.0.1:8080/exams').then
-  ((response)=> {
-    console.log(response);
-  })
-  .catch((err)=> console.log(err))
-}
-
-ariaTest(); 
- /*    async function fetchAsync (url){
-      let response= await fetch("httpshmiapi.cr4.live/exams");
-      let data = await response.json();
-      return data;
+    async function test() {}
+    async function ariaTest() {
+      axios
+        .get(
+          "http://127.0.0.1:8080/exams/product management/students/5/questions/8"
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => console.log(err));
     }
-    fetchAsync()
-    .then(data => console.log(data))
-    .catch(reason =>console.log(reason.message))*/
-  }, 
+
+    ariaTest();
+  },
 });
 </script>
