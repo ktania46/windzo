@@ -67,8 +67,8 @@
       </ol>
     </nav>
     <!-- end nav -->
-
-    <div class="mt-5 w-full">
+	
+	<div class="mt-5 w-full">
       <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
         Examination info
       </h1>
@@ -76,88 +76,67 @@
         Here you can observe all examination info for a chosen subject.
       </p>
     </div>
-    <br />
-    <div class="mt-5 w-full">
-      <h1 class="text-1xl text-gray-900 font-medium dark:text-gray-200">
-        Please select a student
-      </h1>
-      <br />
-      <input
-        class="text-1xl text-gray-900 font-medium dark:text-gray-200"
-        v-model="text"
-      />
-      <br />
-      <br />
-      Answers for student with ID: {{ text }} <br /><br /><button
-        type="button"
-        class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-        @click="chooseStd"
-      >
-        Submit
-      </button>
-    </div>
+    
+<div class="mt-5 w-full">
+  <h1 class="text-1xl text-gray-900 font-medium dark:text-gray-200">Please select a student</h1>
+<input v-model="text">   <button type="button" @click="chooseStd">Submit</button>
+{{ text }} this is text
+</div>
 
-    <div class="m-4">
-      <table-lite
-        :is-loading="table.isLoading"
-        :columns="table.columns"
-        :rows="table.rows"
-        :total="table.totalRecordCount"
-        :sortable="table.sortable"
-        :messages="table.messages"
-        @do-search="doSearch"
-        @is-finished="table.isLoading = false"
-      />
-    </div>
+  <div class="m-4">
+    <table-lite
+      :is-loading="table.isLoading"
+      :columns="table.columns"
+      :rows="table.rows"
+      :total="table.totalRecordCount"
+      :sortable="table.sortable"
+      :messages="table.messages"
+      @do-search="doSearch"
+      @is-finished="table.isLoading = false"
+    />
+  </div>
+
   </div>
 </template>
 
+
 <script>
+
+
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
 import { reactive } from "vue";
 import TableLite from "vue3-table-lite";
-
 import axios from "axios";
-
-var questions;
 
 // Fake Data for 'asc' sortable
 
-function chooseStd() {
-  console.log("did it");
-  return true;
+function chooseStd(){
+console.log("did it");
+return true;
 }
 
-async function sampleData1(offst, limit, std) {
-  return await axios
-    .get(
-      "http://127.0.0.1:8080/exams/project management/students/" +
-        std +
-        "/reports"
-    )
-    .then((response) => {
-      let data = [];
-      console.log(response.data["questions"]);
-      console.log("size " + response.data["questions"].length);
-      console.log(offst + "DAAD" + limit);
-      offst = offst + 1;
-      for (let i = offst; i <= limit; i++) {
-        data.push({
-          id: response.data["questions"][i - 1]["questionID"],
-          qname: response.data["questions"][i - 1]["question"],
-          canswer: response.data["questions"][i - 1]["correct"],
-          ganswer: response.data["questions"][i - 1]["answer"],
-          points:
-            response.data["questions"][i - 1]["stdPoints"] +
-            "/" +
-            response.data["questions"][i - 1]["maxPoints"],
-        });
-      }
-      console.log(data);
-      return data;
-    })
-    .catch((err) => console.log(err));
+  async function sampleData1(offst, limit, std) {
+  return await axios.get('http://127.0.0.1:8080/exams/product management/students/'+std+'/reports').then
+  ((response)=> {
+    let data = [];
+    console.log(response.data['questions']);
+    console.log("size " + response.data['questions'].length);
+    console.log(offst+ "DAAD" + limit);
+    offst = offst + 1;
+    for (let i = offst; i <= limit; i++) {
+      data.push({
+        id: response.data['questions'][i-1]['questionID'],
+        qname: response.data['questions'][i-1]['question'],
+        canswer: response.data['questions'][i-1]['correct'],
+        ganswer: response.data['questions'][i-1]['answer'],
+        points: response.data['questions'][i-1]['stdPoints']+"/"+response.data['questions'][i-1]['maxPoints']
+      });
+    }
+    console.log(data);
+    return data;
+  })
+  .catch((err)=> console.log(err))
 }
 
 export default {
@@ -179,21 +158,21 @@ export default {
           field: "qname",
           width: "20%",
         },
-        {
+		{
           label: "Correct answer",
           field: "canswer",
           width: "15%",
         },
-        {
+		{
           label: "Given answer",
           field: "ganswer",
           width: "15%",
         },
         {
-          label: "Points std/max",
-          field: "points",
-          width: "5%",
-        },
+      label: "Points std/max",
+      field: "points",
+      width: "5%",
+    },
       ],
       rows: [],
       totalRecordCount: 50,
@@ -206,60 +185,35 @@ export default {
     /**
      * Search Event
      */
-    async function doSearch(offset, limit, order, sort, std) {
+   async function doSearch(offset, limit, order, sort, std) {
       table.isLoading = true;
-      table.isReSearch = offset == undefined ? true : false;
-      if (offset >= 10) {
-        limit = offset + 10;
-      }
-      table.rows = await sampleData1(offset, limit, std);
-      table.totalRecordCount = 47;
-      table.sortable.order = order;
-      table.sortable.sort = sort;
-    }
+        table.isReSearch = offset == undefined ? true : false;
+        if (offset >= 10) {
+          limit = offset+10;
+        }
+        table.rows = await sampleData1(offset, limit, std);
+        table.totalRecordCount = 47;
+        table.sortable.order = order;
+        table.sortable.sort = sort;
+    };
 
     // First get data
     //doSearch(0, 10, "id", "asc", 5);
 
     return {
       table,
-      doSearch,
+      doSearch
     };
-  },
-  data() {
-    return {
-      // chart data line
-      optionsLine: {
-        chart: {
-          id: "vuechart-example",
-        },
-        xaxis: {
-          categories: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
-        },
-      },
-      colors: ["#16A34A"],
-      stroke: {
-        curve: "smooth",
-      },
-      seriesLine: [
-        {
-          name: "series-1",
-
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
-        },
-      ],
-      text: "",
-    };
-    // end chart data line
   },
   components: {
     Icon,
     TableLite,
   },
-  methods: {
+    methods: {
     chooseStd: function () {
       console.log("HI!" + this.text);
       this.doSearch(0, 10, "id", "asc", this.text);
+
     },
   },
   mounted() {},
