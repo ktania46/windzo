@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard p-4">
-    <nav class="flex" aria-label="Breadcrumb">
+    <nav class="flex" aria-label="Evaluation">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -61,9 +61,9 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            Rp.2 300 908
+            Number of Professors
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">Total Payouts</h2>
+          <h2 class="font-normal text-gray-400 text-md mt-1">25</h2>
         </div>
       </div>
       <!-- end card -->
@@ -95,9 +95,9 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            256
+            Courses Offered
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">Total Sales</h2>
+          <h2 class="font-normal text-gray-400 text-md mt-1">10</h2>
         </div>
       </div>
       <!-- end card -->
@@ -133,10 +133,10 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            356
+            Total Students
           </p>
           <h2 class="font-normal text-gray-400 text-md mt-1">
-            Total Customers
+            90
           </h2>
         </div>
       </div>
@@ -184,7 +184,7 @@
         class="bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
       >
         <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
-          Total Sales
+          Total Enrollement since 2015
         </h2>
         <br />
         <apexchart
@@ -196,7 +196,7 @@
         ></apexchart>
       </div>
       <div class="bg-white dark:bg-gray-800 p-5 w-96 shadow">
-        <h2 class="dark:text-gray-200">Partner Store</h2>
+        <h2 class="dark:text-gray-200">Professors</h2>
 
         <p class="font-bold font-lg mt-5 dark:text-gray-200">Online</p>
         <div class="mt-4 grid grid-cols-1 gap-4">

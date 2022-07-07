@@ -2,7 +2,7 @@
   <!-- Search component projectmanagement with name of type,  press Ctrl + F -->
 
   <div class="projectmanagement h-auto p-3">
-    <nav class="flex" aria-label="Breadcrumb">
+    <nav class="flex" aria-label="Evaluation">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -72,8 +72,8 @@
         Project Management
       </h1>
       <p class="mt-1 text-sm font-normal text-gray-400">
-        This projectmanagement component helps you to notify about success and danger
-        messages.
+        This projectmanagement component helps you to notify about success and
+        danger messages.
       </p>
     </div>
     <!-- grid wrapper card -->
@@ -377,18 +377,20 @@
 </template>
 
 <script>
-  import { Icon } from "@iconify/vue";
-  export default {
-    components: {
-      Icon,
-    },
-    mounted() {
-      var projectmanagement_dis = document.querySelectorAll(".projectmanagement-dismiss");
-      projectmanagement_dis.forEach((x) =>
-        x.addEventListener("click", function () {
-          x.parentElement.classList.add("hidden");
-        })
-      );
-    },
-  };
+import { Icon } from "@iconify/vue";
+export default {
+  components: {
+    Icon,
+  },
+  mounted() {
+    var projectmanagement_dis = document.querySelectorAll(
+      ".projectmanagement-dismiss"
+    );
+    projectmanagement_dis.forEach((x) =>
+      x.addEventListener("click", function () {
+        x.parentElement.classList.add("hidden");
+      })
+    );
+  },
+};
 </script>

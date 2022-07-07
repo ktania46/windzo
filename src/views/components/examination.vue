@@ -67,8 +67,8 @@
       </ol>
     </nav>
     <!-- end nav -->
-	
-	<div class="mt-5 w-full">
+
+    <div class="mt-5 w-full">
       <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
         Examination info
       </h1>
@@ -96,9 +96,20 @@
     />
   </div>
 
+    <div class="m-4">
+      <table-lite
+        :is-loading="table.isLoading"
+        :columns="table.columns"
+        :rows="table.rows"
+        :total="table.totalRecordCount"
+        :sortable="table.sortable"
+        :messages="table.messages"
+        @do-search="doSearch"
+        @is-finished="table.isLoading = false"
+      />
+    </div>
   </div>
 </template>
-
 
 <script>
 
@@ -221,7 +232,7 @@ export default {
 
     return {
       table,
-      doSearch
+      doSearch,
     };
   },
   data() {
