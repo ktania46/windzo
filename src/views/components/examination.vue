@@ -1,3 +1,4 @@
+
 <template>
   <!-- Search component Examination with name of type, press Ctrl + F -->
 
@@ -101,23 +102,30 @@
 
 
 <script>
-
-
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
 import { reactive } from "vue";
 import TableLite from "vue3-table-lite";
 import axios from "axios";
-
+var questions;
+// async function ariaTest() {
+//   axios.get('http://127.0.0.1:8080/exams/project management/students/1/reports').then
+//   ((response)=> {
+//     console.log(response.data['questions']);
+//     return response.data;
+//   })
+//   .catch((err)=> console.log(err))
+// }
+// ariaTest();
+//var questions = response.data['Message']
+// fetchText();
 // Fake Data for 'asc' sortable
-
 function chooseStd(){
 console.log("did it");
 return true;
 }
-
   async function sampleData1(offst, limit, std) {
-  return await axios.get('http://127.0.0.1:8080/exams/product management/students/'+std+'/reports').then
+  return await axios.get('http://127.0.0.1:8080/exams/project management/students/'+std+'/reports').then
   ((response)=> {
     let data = [];
     console.log(response.data['questions']);
@@ -138,7 +146,6 @@ return true;
   })
   .catch((err)=> console.log(err))
 }
-
 export default {
   name: "Dashboard",
   setup() {
@@ -181,7 +188,6 @@ export default {
         sort: "asc",
       },
     });
-
     /**
      * Search Event
      */
@@ -196,14 +202,37 @@ export default {
         table.sortable.order = order;
         table.sortable.sort = sort;
     };
-
     // First get data
     //doSearch(0, 10, "id", "asc", 5);
-
     return {
       table,
       doSearch
     };
+  },
+  data() {
+    return {
+      // chart data line
+      optionsLine: {
+        chart: {
+          id: "vuechart-example",
+        },
+        xaxis: {
+          categories: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
+        },
+      },
+      colors: ["#16A34A"],
+      stroke: {
+        curve: "smooth",
+      },
+      seriesLine: [
+        {
+          name: "series-1",
+          data: [30, 40, 45, 50, 49, 60, 70, 91],
+        },
+      ],
+      text: '',
+    };
+    // end chart data line
   },
   components: {
     Icon,
@@ -213,7 +242,6 @@ export default {
     chooseStd: function () {
       console.log("HI!" + this.text);
       this.doSearch(0, 10, "id", "asc", this.text);
-
     },
   },
   mounted() {},

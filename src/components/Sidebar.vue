@@ -66,6 +66,7 @@
                     >
                       Students
                     </router-link>
+                    
                     <router-link
                       to="/component/examination"
                       class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -78,7 +79,14 @@
                     >
                       Evaluation
                     </router-link>
+                    <router-link
+                      to="/component/extra"
+                      class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    >
+                      Extra
+                    </router-link>
                   </template>
+
                 </menu-accordion>
               </div>
                <div class="item mt-3 ml-3">
@@ -86,7 +94,7 @@
                   <template v-slot:icon>
                     <Icon icon="gg:corner-double-up-right" />
                   </template>
-                  <template v-slot:title> CI </template>
+                  <template v-slot:title> Computational Intelligence </template>
                   <template v-slot:content>
                     </template>
                 </menu-accordion>

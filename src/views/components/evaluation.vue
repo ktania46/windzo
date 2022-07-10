@@ -1,6 +1,5 @@
 <template>
-  <div class="Examination h-auto p-3">
-    <nav class="flex" aria-label="Examination">
+ <nav class="flex" aria-label="Evaluation">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -64,201 +63,409 @@
         </li>
       </ol>
     </nav>
-  </div>
-  <div v-if="currentStudent" class="edit-form">
-    <h4>Student Details</h4>
-    <form>
-      <div class="form-group">
-        <label for="studentId">Student ID</label>
-        <input
-          type="text"
-          class="form-control"
-          id="studentId"
-          v-model="currentStudent.studentId"
-        />
-      </div>
-      <div class="form-group">
-        <label for="lang">Student Medium of Examination</label>
-        <input
-          type="text"
-          class="form-control"
-          id="lang"
-          v-model="currentStudent.lang"
-        />
-      </div>
-      <div class="form-group">
-        <label for="questionType">Student Medium of Examination</label>
-        <input
-          type="text"
-          class="form-control"
-          id="questionType"
-          v-model="currentStudent.questionType"
-        />
-      </div>
-      <div class="form-group">
-        <label for="questionId">Student Medium of Examination</label>
-        <input
-          type="text"
-          class="form-control"
-          id="questionId"
-          v-model="currentStudent.questionId"
-        />
-      </div>
-      <div class="form-group">
-        <label for="currentStudent.questionName"
-          >Student Medium of Examination</label
+  <div class="grid grid-cols-1 mt-5 ml-2 gap-5">
+    <div class="card w-full p-5 rounded-md bg-white dark:bg-gray-800">
+      
+      <div class="wrapper-button w-full box-border mt-4">
+        <div
+          class="card p-8 max-w-full text:center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
         >
-        <input
-          type="text"
-          class="form-control"
-          id="questionName"
-          v-model="currentStudent.questionName"
-        />
+          <a href="#">
+            <h5
+              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            >
+              Edit Student Score
+            </h5>
+          </a>
+
+          <div class="mt-5 w-full">
+            
+            <input
+              v-model="text"
+              size="10"
+              required
+              placeholder="Enter Student ID"
+              class="p-3 w-full bg-white dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+
+            />&nbsp;
+            <input
+              v-model="questionId"
+              size="10"
+              required
+              placeholder="Enter Question Id"
+              class="p-3 w-full bg-white dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+
+            /><br><br>
+            <button
+              type="button"
+              @click="chooseStd"
+              class="py-2.5 px-8 mr-2 mb-2 ml-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="correctAnswer">Student Medium of Examination</label>
-        <input
-          type="text"
-          class="form-control"
-          id="correctAnswer"
-          v-model="currentStudent.correctAnswer"
-        />
-      </div>
-      <div class="form-group">
-        <label for="standardPoint">Standard Point</label>
-        <input
-          type="text"
-          class="form-control"
-          id="standardPoint"
-          v-model="currentStudent.standardPoint"
-        />
-      </div>
-      <div class="form-group">
-        <label for="maximumPoint">Maximum Point</label>
-        <input
-          type="text"
-          class="form-control"
-          id="maximumPoint"
-          v-model="currentStudent.maximumPoint"
-        />
-      </div>
-      <div class="form-group">
-        <label for="evaluated">Evaluated</label>
-        <input
-          type="text"
-          class="form-control"
-          id="evaluated"
-          v-model="currentStudent.evaluated"
-        />
-      </div>
-      <div class="form-group">
-        <label for="questionlanguage">Question Language</label>
-        <input
-          type="text"
-          class="form-control"
-          id="questionlanguage"
-          v-model="currentStudent.questionlanguage"
-        />
-      </div>
-      <div class="form-group">
-        <label><strong>Status:</strong></label>
-        {{ currentStudent.edited ? "Edited" : "Pending" }}
-      </div>
-    </form>
-    <button
-      class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-      v-if="currentStudent.edited"
-      @click="updateEdited(false)"
-    >
-      UnEdited
-    </button>
-    <button
-      v-else
-      class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
-      @click="updateEdited(true)"
-    >
-      Edited
-    </button>
-    <button
-      type="submit"
-      class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-      @click="updateStudent"
-    >
-      Update Score
-    </button>
-    <p>{{ message }}</p>
+    </div>
   </div>
-  <div v-else>
-    <br />
-    <p>Please click on the Student ID...</p>
+  <div
+    class="block p-2 w-full mt-2 ml-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
+  >
+    <div class="wrapping-table mt-1">
+      <table
+        class="w-full text-xs text-justify text-left text-gray-500 dark:text-gray-400 overflow-auto sm:overflow-visible md:overflow-hidden lg:overflow-x-scroll"
+      >
+        <thead
+          class="text-xs px-1 py-1 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="uppercase px-1 py-1">Student ID</th>
+            <th scope="col" class="uppercase px-1 py-1">Question Number</th>
+
+            <th
+              scope="col"
+              class="accordion-packed uppercase display:inline-block px-5 py-5"
+            >
+              Question Name
+            </th>
+            <th
+              scope="col"
+              class="accordion-packed uppercase display:inline-block px-5 py-5"
+            >
+              Correct Answer
+            </th>
+            <th
+              scope="col"
+              class="accordion-packed uppercase display:inline-block px-5 py-5"
+            >
+              Given Answer
+            </th>
+            <th scope="col" class="uppercase px-6 py-1">Points std</th>
+            <th scope="col" class="uppercase px-1 py-1">Maximum std</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
+            v-for="question in student"
+            :key="question.id"
+          >
+            <td class="px-6 py-4">
+              {{ question.mtr }}
+            </td>
+            <td class="px-6 py-4">
+              {{ question.id }}
+            </td>
+            <td class="px-6 py-4">
+              <app-accordion>
+                <template v-slot:title> Question</template>
+                <template v-slot:content>
+                  {{ question.qname }}
+                </template>
+              </app-accordion>
+            </td>
+            <td class="px-6 py-4">
+              <app-accordion>
+                <template v-slot:title> Correct Answer</template>
+                <template v-slot:content>
+                  {{ question.canswer }}
+                </template>
+              </app-accordion>
+            </td>
+            <td class="px-6 py-4">
+              <app-accordion>
+                <template v-slot:title> Given Answer</template>
+                <template v-slot:content>
+                  {{ question.ganswer }}
+                </template>
+              </app-accordion>
+            </td>
+             <td class="px-6 py-4">
+              <input
+                type="text"
+                size="5"
+                @change="pointsChanged(question)"
+                v-model="question.stdPoint"
+              />
+            </td>
+            <td class="px-6 py-4">
+              {{ question.qPoint }}
+            </td>
+           
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  <br />
+  <button
+    @click="submitNewPoints"
+    type="button"
+    class="py-2.5 px-8 mr-2 mb-2 ml-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+  >
+    Submit
+  </button>
 </template>
 <script>
-import StudentReport from "../../services/StudentReport";
+// @ is an alias to /src
+import { Icon } from "@iconify/vue";
+import { reactive } from "vue";
+import axios from "axios";
+import AppAccordion from "../../components/AppAccordion.vue";
+
+var questions;
+
+function chooseStd() {
+  console.log("did it");
+  return true;
+}
+
+async function getQuestions() {
+  let data = [];
+  return await axios
+    .get("http://127.0.0.1:8080/exams/product management/questions")
+    .then((response) => {
+      response.data["questions"].forEach((element) => {
+        data.push({
+          id: element["questionID"],
+          questionDE: element["questionDE"],
+          questionEN: element["questionEN"],
+          correctDE: element["correctDE"],
+          correctEN: element["correctEN"],
+          points: element["points"],
+        });
+      });
+      return data;
+    });
+}
+async function sampleData1(offst, limit, std, qId, questions) {
+  console.log("ooomadam");
+  if (std !== "") {
+    return await axios
+      .get(
+        "http://127.0.0.1:8080/exams/product management/students/" +
+          std +
+          "/reports"
+      )
+      .then((response) => {
+        let data = [];
+        console.log(response.data["questions"]);
+        console.log("size " + response.data["questions"].length);
+        console.log(offst + "DAAD" + limit);
+        offst = offst + 1;
+        for (let i = offst; i <= limit; i++) {
+          if (
+            qId !== "" &&
+            response.data["questions"][i - 1]["questionID"] == qId
+          ) {
+            data.push({
+              id: response.data["questions"][i - 1]["questionID"],
+              qname: response.data["questions"][i - 1]["question"],
+              canswer: response.data["questions"][i - 1]["correct"],
+              ganswer: response.data["questions"][i - 1]["answer"],
+              stdPoint: response.data["questions"][i - 1]["stdPoints"],
+              qPoint: response.data["questions"][i - 1]["maxPoints"],
+              points: response.data["questions"][i - 1]["stdPoints"],
+              mtr: response.data["mtr"],
+            });
+          }
+          if (qId === "") {
+            data.push({
+              id: response.data["questions"][i - 1]["questionID"],
+              qname: response.data["questions"][i - 1]["question"],
+              canswer: response.data["questions"][i - 1]["correct"],
+              ganswer: response.data["questions"][i - 1]["answer"],
+              stdPoint: response.data["questions"][i - 1]["stdPoints"],
+              qPoint: response.data["questions"][i - 1]["maxPoints"],
+              points: response.data["questions"][i - 1]["stdPoints"],
+              mtr: response.data["mtr"],
+            });
+          }
+          console.log(data);
+        }
+        return data;
+      })
+      .catch((err) => console.log(err));
+  }
+  if (std === "" && qId !== "") {
+    return await axios
+      .get(
+        "http://127.0.0.1:8080/exams/product management/questions/" +
+          qId +
+          "/responses"
+      )
+      .then((response) => {
+        console.log(response);
+        let data = [];
+        offst = offst + 1;
+        let chosenQuestion = questions.filter((el) => el["id"] === qId);
+
+        for (let i = offst; i <= limit; i++) {
+          data.push({
+            id: qId,
+            qname: chosenQuestion[0]["questionEN"],
+            canswer: chosenQuestion[0]["correctEN"],
+            ganswer: response.data[i - 1]["response"],
+            stdPoint: response.data[i - 1]["stdPoints"],
+            qPoint: chosenQuestion[0]["points"],
+            //points: '',
+            mtr: response.data[i - 1]["mtr"],
+          });
+        }
+        return data;
+      });
+  }
+}
+
+async function updateStudentPoints(updateInfo) {
+  for (let i = 0; i < updateInfo.StdPoints.length; i++) {
+    axios
+      .put(
+        "http://127.0.0.1:8080/exams/product management/students/" +
+          updateInfo.mtr +
+          "/questions/" +
+          updateInfo.QuestionIds[i] +
+          "?p=" +
+          updateInfo.StdPoints[i]
+      )
+      .then((response) => {
+        console.log(response);
+      });
+  }
+
+  return null;
+}
 
 export default {
-  name: "student",
-  data() {
+  name: "Dashboard",
+
+  setup() {
+    // Table config
+    const table = reactive({
+      isLoading: false,
+      columns: [
+        {
+          label: "Student ID",
+          field: "id",
+          width: "3%",
+          isKey: true,
+        },
+        {
+          label: "Question number",
+          field: "id",
+          width: "3%",
+          isKey: true,
+        },
+        {
+          label: "Question name",
+          field: "qname",
+          width: "20%",
+        },
+        {
+          label: "Correct answer",
+          field: "canswer",
+          width: "3%",
+        },
+        {
+          label: "Given answer",
+          field: "ganswer",
+          width: "3%",
+        },
+        {
+          label: "Maximum points",
+          field: "points",
+          width: "5%",
+        },
+        {
+          label: "Points std",
+          field: "",
+          width: "10%",
+        },
+      ],
+      rows: [],
+      totalRecordCount: 50,
+    });
+
+    async function doSearch(offset, limit, order, sort, std, questionId) {
+      if (offset >= 47) {
+        limit = offset + 47;
+      }
+      this.questions = await getQuestions();
+      console.log(this.questions);
+      this.student = await sampleData1(
+        offset,
+        limit,
+        std,
+        questionId,
+        this.questions
+      );
+    }
+    const updateCheckedRows = (rowsKey) => {
+      console.log(rowsKey);
+    };
+
     return {
-      currentStudent: null,
-      message: "",
+      table,
+      doSearch,
+      updateCheckedRows,
     };
   },
+  data() {
+    return {
+      toBeChangedPoints: {
+        mtr: "",
+        QuestionIds: [],
+        StdPoints: [],
+        valid: true,
+      },
+      student: {},
+      text: "",
+      stdPoint: "",
+      uniqueQuestionIds: [],
+      questionId: "",
+      questions: {},
+    };
+  },
+  components: {
+    Icon,
+    AppAccordion,
+  },
   methods: {
-    getStudent(id) {
-      StudentReport.get(id)
-        .then((response) => {
-          this.currentStudent = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    chooseStd: function () {
+      console.log("HI!" + this.text);
+      this.doSearch(0, 47, "id", "asc", this.text, this.questionId);
     },
-    updateEdited(status) {
-      var data = {
-        studentId: this.currentStudent.studentId,
-        lang: this.currentStudent.lang,
-        questionType: this.currentStudent.questionType,
-        questionId: this.currentStudent.questionId,
-        questionName: this.currentStudent.questionName,
-        questioncorrectAnswer: this.currentStudent.correctAnswer,
-        standardPoint: this.currentStudent.standardPoint,
-        maximumPoint: this.currentStudent.maximumPoint,
-        evaluated: this.currentStudent.evaluated,
-        questionLanguage: this.currentStudent.questionLanguage,
-        edited: status,
-      };
-      StudentReport.update(this.currentStudent.standardPoint, data)
-        .then((response) => {
-          console.log(response.data);
-          this.currentStudent.standardPoint = { newPoints };
-          this.message = "The score has been updated successfully!";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+
+    pointsChanged: function (question) {
+      console.log(question["mtr"]);
+      console.log(question["stdPoint"]);
+      console.log(question["id"]);
+      if (question["stdPoint"] <= question["qPoint"]) {
+        this.toBeChangedPoints.QuestionIds.push(question["id"]);
+        this.toBeChangedPoints.mtr = question["mtr"];
+        this.toBeChangedPoints.StdPoints.push(question["stdPoint"]);
+        console.log(this.toBeChangedPoints);
+      } else {
+        alert("badInput");
+      }
     },
-    updateStudent() {
-      StudentReport.update(this.currentStudent.studentId, this.currentStudent)
-        .then((response) => {
-          console.log(response.data);
-          this.message = "The student score was updated successfully!";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+
+    submitNewPoints: function () {
+      for (let i = this.toBeChangedPoints.QuestionIds.length - 1; i >= 0; i--) {
+        if (
+          this.uniqueQuestionIds.includes(this.toBeChangedPoints.QuestionIds[i])
+        ) {
+          this.toBeChangedPoints.QuestionIds.splice(i, 1);
+          this.toBeChangedPoints.StdPoints.splice(i, 1);
+        } else {
+          this.uniqueQuestionIds.push(this.toBeChangedPoints.QuestionIds[i]);
+        }
+      }
+      console.log(this.toBeChangedPoints);
+      updateStudentPoints(this.toBeChangedPoints);
     },
   },
-  mounted() {
-    this.message = "";
-    this.getStudent(this.$route.params.id);
-  },
+  mounted() {},
 };
 </script>
-<style>
-.edit-form {
-  max-width: 300px;
-  margin: auto;
-}
-</style>

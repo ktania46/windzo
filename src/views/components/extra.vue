@@ -82,13 +82,16 @@
       <div
         class="card col-span-1 grid grid-cols-1 gap-5 bg-white dark:bg-gray-800 w-full rounded-md p-5 shadow"
       >
-        <div class="accordion-packed">
+       
+         <!---pasted content-->
+
+        <div class="accordion-packed1111">
           <h2 class="font-semibold dark:text-gray-200">Accordion Default</h2>
           <div class="wrapper mt-5">
             <!-- copy this component  -->
             <app-accordion>
-              <template v-slot:title> Click me to open</template>
-              <template v-slot:content>
+              <template v-slot:title1> Click me to open</template>
+              <template v-slot:content11>
                 <p>
                   <b>Lorem</b>, ipsum dolor sit amet consectetur adipisicing
                   elit. Quia, porro. Non a excepturi, voluptatibus ipsam magnam,
@@ -100,7 +103,7 @@
             <!-- end copy -->
           </div>
         </div>
-       
+        <!--end-->
         <div class="accordion-packed">
           <h2 class="font-semibold dark:text-gray-200">Accordion With icon</h2>
           <p class="mt-1 dark:text-gray-200">
@@ -174,7 +177,7 @@
             <!-- copy this component  -->
             <menu-accordion>
               <template v-slot:icon>
-                <Icon icon="akar-icomenuns:link-out" />
+                <Icon icon="akar-icons:link-out" />
               </template>
               <template v-slot:title> Click me to open</template>
               <template v-slot:content>
@@ -192,7 +195,6 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>

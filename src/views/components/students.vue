@@ -1,8 +1,8 @@
 <template>
-  <!-- Search component Examination with name of type, press Ctrl + F -->
+  <!-- Search component Students with name of type, press Ctrl + F -->
 
-  <div class="Examination h-auto p-3">
-    <nav class="flex" aria-label="Examination">
+  <div class="Students h-auto p-3">
+    <nav class="flex" aria-label="Students">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -60,180 +60,424 @@
             <a
               href="#"
               class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-              >Examination</a
+              >Students</a
             >
           </div>
         </li>
       </ol>
     </nav>
   </div>
-  <div class="list row">
-    <div class="col-md-8">
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search by Student ID"
-          v-model="studentId"
-        />
-        <div class="input-group-append">
-          <button
-            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            type="button"
-            @click="searchId"
+    <!-- end nav -->
+	
+	<div class="mt-5 ml-5 w-full">
+      <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
+        Students info
+      </h1>
+      <p class="mt-1 text-sm font-normal text-gray-400">
+        Here you can observe all Students info for a chosen subject.
+      </p>
+    </div>
+	  <div class="mt-5 ml-5 w-full">
+            
+            <input
+              v-model="text"
+              size="10"
+              required
+              placeholder="Please Enter Student ID"
+              class="p-3 w-full bg-white dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+            /><br><br>
+            
+            <button
+              type="button"
+              @click="chooseStd"
+              class="py-2.5 px-8 mr-2 mb-2 ml-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            >
+              Submit
+            </button>
+          </div><br>
+          <span class="bg-blue-700 ml-5 rounded-md text-xs py-1 px-4 text-white"
+            >"EN" - English</span
+          >&nbsp;&nbsp;
+          <span class="bg-green-600 rounded-md text-xs py-1 px-4 text-white"
+            >"DE" - German</span>&nbsp;&nbsp;
+            <span class="bg-red-600 rounded-md text-xs py-1 px-4 text-white"
+            >"SA" - Sentence answer</span
+          >&nbsp;&nbsp;
+           <span class="bg-orange-600 rounded-md text-xs py-1 px-4 text-white"
+            >"PO" - Pick one
+          </span>&nbsp;&nbsp;
+          <span class="bg-red-600 rounded-md text-xs py-1 px-4 text-white"
+            >"PM" - Pick multiple</span
+          >&nbsp;&nbsp;<br>
+          <p class="mt-5 ml-5 text-sm font-normal text-gray-400">
+            * Evaluation is done only when the analysed answer differs from the original answer.
+          </p>
+ <div
+    class="block p-2 w-full mt-2 ml-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
+  >
+  
+    <div class="wrapping-table mt-1">
+      <table
+        class="w-full text-xs text-justify text-left text-gray-500 dark:text-gray-400 overflow-auto sm:overflow-visible md:overflow-hidden lg:overflow-x-scroll"
+      >
+        <thead
+          class="text-xs px-1 py-1 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="uppercase px-1 py-1">Student ID</th>
+            <th scope="col" class="uppercase px-1 py-1">Question Number</th>
+            <th scope="col" class="uppercase px-1 py-1">Exam Language</th>
+            <th scope="col" class="uppercase px-1 py-1">Question Type</th>
+            <th
+              scope="col"
+              class="accordion-packed uppercase display:inline-block px-5 py-5"
+            >
+              Question Name
+            </th>
+            <th
+              scope="col"
+              class="accordion-packed uppercase display:inline-block px-5 py-5"
+            >
+              Correct Answer
+            </th>
+            <th
+              scope="col"
+              class="accordion-packed uppercase display:inline-block px-5 py-5"
+            >
+              Given Answer
+            </th>
+            <th scope="col" class="uppercase px-1 py-1">*Evaluated</th>
+            <th scope="col" class="uppercase px-1 py-1">Maximum std</th>
+            <th scope="col" class="uppercase px-6 py-1">Points std</th>
+            
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
+            v-for="question in student"
+            :key="question.id"
           >
-            Search
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <h4>Students List</h4>
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          :class="{ active: index == currentIndex }"
-          v-for="(student, index) in students"
-          :key="index"
-          @click="setActiveStudent(student, index)"
-        >
-          {{ student.id }}
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <div v-if="currentStudent">
-        <h4>Student Details</h4>
-        <div>
-          <label><strong>StudentID:</strong></label>
-          {{ currentStudent.studentId }}
-        </div>
-        <div>
-          <label><strong>Language of Examination:</strong></label>
-          {{ currentStudent.lang }}
-        </div>
-        <div>
-          <label><strong>Question Type:</strong></label>
-          {{ currentStudent.questionType }}
-        </div>
-        <div>
-          <label><strong>Question ID:</strong></label>
-          {{ currentStudent.questionId }}
-        </div>
-        <div>
-          <label><strong>Question:</strong></label>
-          {{ currentStudent.questionName }}
-        </div>
-        <div>
-          <label><strong>Correct Answer:</strong></label>
-          {{ currentStudent.correctAnswer }}
-        </div>
-        <div>
-          <label><strong>Standard Point:</strong></label>
-          {{ currentStudent.standardPoint }}
-        </div>
-        <div>
-          <label><strong>Maximum Point:</strong></label>
-          {{ currentStudent.maximumPoint }}
-        </div>
-        <div>
-          <label><strong>Evaluated:</strong></label>
-          {{ currentStudent.evaluated }}
-        </div>
-        <div>
-          <label><strong>Question Language:</strong></label>
-          {{ currentStudent.questionlanguage }}
-        </div>
-        <div>
-          <label><strong>Status:</strong></label>
-          {{ currentStudent.edited ? "Edited" : "Pending" }}
-        </div>
-        <router-link
-          :to="'/evaluation/' + currentStudent.id"
-          class="badge badge-warning"
-          >Edit</router-link
-        >
-      </div>
-      <div v-else>
-        <br />
-        <p>Please click on a Student...</p>
-      </div>
+            <td class="px-6 py-4">
+              {{ question.mtr }}
+            </td>
+            <td class="px-6 py-4">
+              {{ question.id }}
+            </td>
+             <td class="px-6 py-4">
+              {{ question.lang }}
+            </td>
+            <td class="px-6 py-4">
+              {{ question.qtype }}
+            </td>
+            <td class="px-6 py-4">
+              <app-accordion>
+                <template v-slot:title> Question</template>
+                <template v-slot:content>
+                  {{ question.qname }}
+                </template>
+              </app-accordion>
+            </td>
+            <td class="px-6 py-4">
+              <app-accordion>
+                <template v-slot:title> Correct Answer</template>
+                <template v-slot:content>
+                  {{ question.canswer }}
+                </template>
+              </app-accordion>
+            </td>
+            <td class="px-6 py-4">
+              <app-accordion>
+                <template v-slot:title> Given Answer</template>
+                <template v-slot:content>
+                  {{ question.ganswer }}
+                </template>
+              </app-accordion>
+            </td>
+             <td class="px-6 py-4">
+              {{ question.eval }}
+            </td>
+             <td class="px-6 py-4">
+              {{ question.qPoint }}
+            </td>
+            <td class="px-6 py-4">
+              {{ question.points }}
+            </td>
+           
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+  <br />
+  <button
+    @click="submitNewPoints"
+    type="button"
+    class="py-2.5 px-8 mr-2 mb-2 ml-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+  >
+    Submit
+  </button>
 </template>
 <script>
-import StudentReport from "../../services/StudentReport";
+// @ is an alias to /src
+import { Icon } from "@iconify/vue";
+import { reactive } from "vue";
+import axios from "axios";
+import AppAccordion from "../../components/AppAccordion.vue";
 
-/* async function sampleData1(offst, limit, std) {
-  return await axios
-    .get(
-      "http://127.0.0.1:8080/exams/product management/students/" +
-        std +
-        "/reports"
-    )
-    .then((response) => {
-      let data = [];
-      console.log(response.data["questions"]);
-      console.log("size " + response.data["questions"].length);
-      console.log(offst + "DAAD" + limit);
-      offst = offst + 1;
-      for (let i = offst; i <= limit; i++) {
-        data.push({
-          id: response.data["questions"][i - 1]["questionID"],
-          qname: response.data["questions"][i - 1]["question"],
-          canswer: response.data["questions"][i - 1]["correct"],
-          ganswer: response.data["questions"][i - 1]["answer"],
-          stdpoints: response.data["questions"][i - 1]["stdPoints"],
-          maxpoints: response.data["questions"][i - 1]["maxPoints"],
-        });
-      }
-      console.log(data);
-      return data;
-    })
-    .catch((err) => console.log(err));
+var questions;
+
+function chooseStd() {
+  console.log("did it");
+  return true;
+}
+
+async function sampleData1(offst, limit, std) {
+  console.log("ooomadam");
+  if (std !== "") {
+    return await axios
+      .get(
+        "http://127.0.0.1:8080/exams/product management/students/" +
+          std +
+          "/reports"
+      )
+      .then((response) => {
+        let data = [];
+        console.log(response.data["questions"]);
+        console.log("size " + response.data["questions"].length);
+        console.log(offst + "DAAD" + limit);
+        offst = offst + 1;
+        for (let i = offst; i <= limit; i++) {
+            data.push({
+              id: response.data["questions"][i - 1]["questionID"],
+              qname: response.data["questions"][i - 1]["question"],
+              lang: response.data["lang"],
+              qtype: response.data["questions"][i - 1]["questionType"],
+              canswer: response.data["questions"][i - 1]["correct"],
+              ganswer: response.data["questions"][i - 1]["answer"],
+              stdPoint: response.data["questions"][i - 1]["stdPoints"],
+              eval: response.data["questions"][i - 1]["evalutated"],
+              qPoint: response.data["questions"][i - 1]["maxPoints"],
+              points: response.data["questions"][i - 1]["stdPoints"],
+              mtr: response.data["mtr"],
+            });
+          }
+         /*  if (qId === "") {
+            data.push({
+              id: response.data["questions"][i - 1]["questionID"],
+              qname: response.data["questions"][i - 1]["question"],
+              canswer: response.data["questions"][i - 1]["correct"],
+              ganswer: response.data["questions"][i - 1]["answer"],
+              stdPoint: response.data["questions"][i - 1]["stdPoints"],
+              qPoint: response.data["questions"][i - 1]["maxPoints"],
+              points: response.data["questions"][i - 1]["stdPoints"],
+              mtr: response.data["mtr"],
+            });
+          } */
+          console.log(data);
+        
+        return data;
+      })
+      .catch((err) => console.log(err));
+  }
+  /* if (std === "" && qId !== "") {
+    return await axios
+      .get(
+        "http://127.0.0.1:8080/exams/product management/questions/" +
+          qId +
+          "/responses"
+      )
+      .then((response) => {
+        console.log(response);
+        let data = [];
+        offst = offst + 1;
+        let chosenQuestion = questions.filter((el) => el["id"] === qId);
+
+        for (let i = offst; i <= limit; i++) {
+          data.push({
+            id: qId,
+            qname: chosenQuestion[0]["questionEN"],
+            canswer: chosenQuestion[0]["correctEN"],
+            ganswer: response.data[i - 1]["response"],
+            stdPoint: response.data[i - 1]["stdPoints"],
+            qPoint: chosenQuestion[0]["points"],
+            //points: '',
+            mtr: response.data[i - 1]["mtr"],
+          });
+        }
+        return data;
+      });
+  } */
+}
+
+/* async function updateStudentPoints(updateInfo) {
+  for (let i = 0; i < updateInfo.StdPoints.length; i++) {
+    axios
+      .put(
+        "http://127.0.0.1:8080/exams/product management/students/" +
+          updateInfo.mtr +
+          "/questions/" +
+          updateInfo.QuestionIds[i] +
+          "?p=" +
+          updateInfo.StdPoints[i]
+      )
+      .then((response) => {
+        console.log(response);
+      });
+  }
+
+  return null;
 } */
+
 export default {
-  name: "student-list",
-  data() {
+  name: "Dashboard",
+
+  setup() {
+    // Table config
+    const table = reactive({
+      isLoading: false,
+      columns: [
+        {
+          label: "Student ID",
+          field: "id",
+          width: "3%",
+          isKey: true,
+        },
+        {
+          label: "Question number",
+          field: "id",
+          width: "3%",
+          isKey: true,
+        },
+          {
+          label: "Exam Language",
+          field: "lang",
+          width: "3%",
+          isKey: true,
+        },
+        {
+          label: "Question Type",
+          field: "qtype",
+          width: "3%",
+          isKey: true,
+        },
+        {
+          label: "Question name",
+          field: "qname",
+          width: "20%",
+        },
+        {
+          label: "Correct answer",
+          field: "canswer",
+          width: "3%",
+        },
+        {
+          label: "Given answer",
+          field: "ganswer",
+          width: "3%",
+        },
+         {
+          label: "Evaluated",
+          field: "eval",
+          width: "3%",
+        },
+        {
+          label: "Maximum points",
+          field: "points",
+          width: "5%",
+        },
+        {
+          label: "Points std",
+          field: "",
+          width: "10%",
+        },
+      ],
+      rows: [],
+      totalRecordCount: 50,
+    });
+
+    async function doSearch(offset, limit, order, sort, std, questionId) {
+      if (offset >= 47) {
+        limit = offset + 47;
+      }
+    //  this.questions = await getQuestions();
+      console.log(this.questions);
+      this.student = await sampleData1(
+        offset,
+        limit,
+        std,
+        questionId,
+        this.questions
+      );
+    }
+    const updateCheckedRows = (rowsKey) => {
+      console.log(rowsKey);
+    };
+
     return {
-      students: [],
-      currentStudent: null,
-      currentIndex: -1,
-      studentId: "",
+      table,
+      doSearch,
+      updateCheckedRows,
     };
   },
+  data() {
+    return {
+      questions: {},
+      student: {},
+      /* toBeChangedPoints: {
+        mtr: "",
+        QuestionIds: [],
+        StdPoints: [],
+        valid: true,
+      },
+      student: {},
+      text: "",
+      stdPoint: "",
+      uniqueQuestionIds: [],
+      questionId: "",
+      questions: {}, */
+    };
+  },
+  components: {
+    Icon,
+    AppAccordion,
+  },
   methods: {
-    retrieveStudents() {
-      StudentReport.getAll()
-        .then((response) => {
-          this.students = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    chooseStd: function () {
+      console.log("HI!" + this.text);
+      this.doSearch(0, 47, "id", "asc", this.text);
     },
-    refreshList() {
-      this.retrieveStudents();
-      this.currentStudent = null;
-      this.currentIndex = -1;
-    },
-    setActiveStudent(student, index) {
-      this.currentStudent = student;
-      this.currentIndex = student ? index : -1;
-      
-    },
+
+  /*   pointsChanged: function (question) {
+      console.log(question["mtr"]);
+      console.log(question["stdPoint"]);
+      console.log(question["id"]);
+      if (question["stdPoint"] <= question["qPoint"]) {
+        this.toBeChangedPoints.QuestionIds.push(question["id"]);
+        this.toBeChangedPoints.mtr = question["mtr"];
+        this.toBeChangedPoints.StdPoints.push(question["stdPoint"]);
+        console.log(this.toBeChangedPoints);
+      } else {
+        alert("badInput");
+      }
+    }, */
+
+    /* submitNewPoints: function () {
+      for (let i = this.toBeChangedPoints.QuestionIds.length - 1; i >= 0; i--) {
+        if (
+          this.uniqueQuestionIds.includes(this.toBeChangedPoints.QuestionIds[i])
+        ) {
+          this.toBeChangedPoints.QuestionIds.splice(i, 1);
+          this.toBeChangedPoints.StdPoints.splice(i, 1);
+        } else {
+          this.uniqueQuestionIds.push(this.toBeChangedPoints.QuestionIds[i]);
+        }
+      }
+      console.log(this.toBeChangedPoints);
+      updateStudentPoints(this.toBeChangedPoints);
+    }, */
   },
-  mounted() {
-    this.retrieveStudents();
-  },
+  mounted() {},
 };
 </script>
-<style>
-.list {
-  text-align: left;
-  max-width: 750px;
-  margin: auto;
-  color: ghostwhite;
-}
-</style>
