@@ -124,10 +124,10 @@
           class="text-xs px-1 py-1 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
         >
           <tr>
-            <th scope="col" class="uppercase px-1 py-1">Student ID</th>
-            <th scope="col" class="uppercase px-1 py-1">Question Number</th>
+            <th scope="col" class="uppercase px-2 py-1">Student ID</th>
+            <th scope="col" class="uppercase px-2 py-1">Question Number</th>
             <th scope="col" class="uppercase px-1 py-1">Exam Language</th>
-            <th scope="col" class="uppercase px-1 py-1">Question Type</th>
+            <th scope="col" class="uppercase px-6 py-1">Question Type</th>
             <th
               scope="col"
               class="accordion-packed uppercase display:inline-block px-5 py-5"
@@ -146,7 +146,7 @@
             >
               Given Answer
             </th>
-            <th scope="col" class="uppercase px-1 py-1">*Evaluated</th>
+            <th scope="col" class="uppercase px-6 py-1">*Evaluated</th>
             <th scope="col" class="uppercase px-1 py-1">Maximum std</th>
             <th scope="col" class="uppercase px-6 py-1">Points std</th>
             

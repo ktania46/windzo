@@ -85,7 +85,7 @@
               size="10"
               required
               placeholder="Enter Student ID"
-              class="p-3 w-full bg-white dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+              class="p-3 w-full bg-black dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
 
             />&nbsp;
             <input
@@ -181,9 +181,10 @@
                 </template>
               </app-accordion>
             </td>
-             <td class="px-6 py-4">
+             <td class="px-6 py-4 ">
               <input
-                type="text"
+                type="text"               class="p-3 w-full bg-black dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+
                 size="5"
                 @change="pointsChanged(question)"
                 v-model="question.stdPoint"
