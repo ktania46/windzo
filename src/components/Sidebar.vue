@@ -78,6 +78,12 @@
                     >
                       Evaluation
                     </router-link>
+                    <router-link
+                      to="/component/statistics"
+                      class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    >
+                      Statistics
+                    </router-link>
                   </template>
                 </menu-accordion>
               </div>
