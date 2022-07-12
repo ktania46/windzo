@@ -9,9 +9,8 @@ import Vbadges from "../views/components/badges.vue";
 import Vevaluation from "../views/components/evaluation.vue";
 import Vbutton from "../views/components/button.vue";
 import Vcard from "../views/components/card.vue";
-import Vexamination from "../views/components/examination.vue";
 import Vstudents from "../views/components/students.vue";
-import Vextra from "../views/components/extra.vue";
+import Vstatistics from "../views/components/statistics";
 var appname = "Human Machine Interaction";
 
 const routes = [
@@ -49,17 +48,18 @@ const routes = [
     meta: { title: "Evaluation" + appname },
   },
   {
+    path: "/component/statistics",
+    name: "Vstatistics",
+    component: Vstatistics,
+    meta: { title: "Statistics" + appname },
+  },
+  {
     path: "/component/students",
     name: "Vstudents",
     component: Vstudents,
     meta: { title: "Students" + appname },
   },
-    {
-    path: "/component/examination",
-    name: "Vexamination",
-    component: Vexamination,
-    meta: { title: "Examination" + appname },
-  },
+  
   {
     path: "/component/button",
     name: "Vbutton",
@@ -71,12 +71,6 @@ const routes = [
     name: "Vcard",
     component: Vcard,
     meta: { title: "Card" + appname },
-  },
-  {
-    path: "/component/extra",
-    name: "Vextra",
-    component: Vextra,
-    meta: { title: "Extra" + appname },
   },
 ];
 

@@ -1,7 +1,6 @@
 {
-  "name": "windzo",
+  "name": "HMI",
   "version": "1.0.1",
-  "description": "Free Open Source Template Dashboard Admin Vue Tailwind CSS",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,13 +8,6 @@
     "windsass": "sass --watch src/assets/sass/app.windzo.scss src/assets/sass/css/windzo.css",
     "require": "npm i -g sass @vue/cli"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sahrullahh/windzo.git"
-  },
-  "homepage": "https://windzo.vercel.app",
-  "author": "Mohammad Sahrullah",
-  "license": "MIT",
   "dependencies": {
     "@headlessui/vue": "^1.6.6",
     "@heroicons/vue": "^1.0.6",

@@ -133,49 +133,49 @@
           <div
             class="primary-projectmanagement bg-blue-500 py-3 px-5 text-white w-full box-border rounded-md"
           >
-            <h1 class="text-xl font-bold">Windzo</h1>
+            <h1 class="text-xl font-bold">HMI</h1>
             Hello iam primary and can also info projectmanagement
           </div>
           <div
             class="success-projectmanagement bg-green-500 py-3 px-5 text-white w-full box-border rounded-md"
           >
-            <h1 class="text-xl font-bold">Windzo</h1>
+            <h1 class="text-xl font-bold">HMI</h1>
             Hello iam projectmanagement success
           </div>
           <div
             class="warning-projectmanagement bg-orange-500 py-3 px-5 text-white w-full box-border rounded-md"
           >
-            <h1 class="text-xl font-bold">Windzo</h1>
+            <h1 class="text-xl font-bold">HMI</h1>
             Hello iam projectmanagement warning
           </div>
           <div
             class="danger-projectmanagement bg-red-500 py-3 px-5 text-white w-full box-border rounded-md"
           >
-            <h1 class="text-xl font-bold">Windzo</h1>
+            <h1 class="text-xl font-bold">HMI</h1>
             Hello iam projectmanagement danger
           </div>
           <div
             class="dark-projectmanagement bg-gray-800 py-3 px-5 text-white w-full box-border rounded-md"
           >
-            <h1 class="text-xl font-bold">Windzo</h1>
+            <h1 class="text-xl font-bold">HMI</h1>
             Hello iam projectmanagement dark
           </div>
           <div
             class="secondary-projectmanagement bg-gray-300 py-3 px-5 text-gray-800 w-full box-border rounded-md"
           >
-            <h1 class="text-xl font-bold">Windzo</h1>
+            <h1 class="text-xl font-bold">HMI</h1>
             Hello iam projectmanagement secondary
           </div>
           <div
             class="light-projectmanagement bg-gray-100 py-3 px-5 text-gray-800 w-full box-border rounded-md"
           >
-            <h1 class="text-xl font-bold">Windzo</h1>
+            <h1 class="text-xl font-bold">HMI</h1>
             Hello iam projectmanagement light
           </div>
           <div
             class="light-projectmanagement bg-primary py-3 px-5 text-white w-full box-border rounded-md"
           >
-            <h1 class="text-xl font-bold">Windzo</h1>
+            <h1 class="text-xl font-bold">HMI</h1>
             Hello iam projectmanagement custom colors
           </div>
         </div>

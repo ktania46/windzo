@@ -1,5 +1,8 @@
 <template>
- <nav class="flex" aria-label="Evaluation">
+  <!-- Search component Students with name of type, press Ctrl + F -->
+
+  <div class="Students h-auto p-3">
+    <nav class="flex" aria-label="Students">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -57,77 +60,57 @@
             <a
               href="#"
               class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-              >Evaluation</a
+              >Students</a
             >
           </div>
         </li>
       </ol>
     </nav>
-  <div class="grid grid-cols-1 mt-5 ml-2 gap-5">
-    <div class="card w-full p-5 rounded-md bg-white dark:bg-gray-800">
+  </div>
+    <!-- end nav -->
+
+	<div class="mt-5 ml-5 w-full">
+      <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
+       Course overall status information
+      </h1>
+      <p class="mt-1 text-sm font-normal text-gray-400">
+        Here you can observe the passing and failing status of all the enrolled students.<br>
+       Pie chart shows the scale of scores.
+      </p>
+    </div>   <br>  
+   
+    <div class="range mt-2 ml-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow">
+      <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200" style="text-align: center">Slide to adjust the scale of scores</h1>
+ <br> <input style="text-align: center; width: 60%; height: 380; margin-left: 20%;" @change="rangeChanged($event)" type="range" class="form-range" min="0" max="100" step="1" id="customRange3" />
+  <h1 style="margin-left: 48%; color:gray">{{percentage}}</h1>
+</div>
+          <div
+        class="mt-2 ml-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
+      >
       
-      <div class="wrapper-button w-full box-border mt-4">
-        <div
-          class="card p-8 max-w-full text:center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
-        >
-          <a href="#">
-            <h5
-              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-            >
-              Edit Student Score
-            </h5>
-          </a>
+        <p class="text-gray-400 font-lexend font-normal">
+          All Grades Distribution Assuming {{percentage}}% as pass
+        </p>
 
-          <div class="mt-5 w-full">
-            
-            <input
-              v-model="text"
-              size="10"
-              required
-              placeholder="Enter Student ID"
-              class="p-3 w-full bg-black dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
-
-            />&nbsp;
-            <input
-              v-model="questionId"
-              size="10"
-              required
-              placeholder="Enter Question Id"
-              class="p-3 w-full bg-white dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
-
-            /><br><br>
-            <button
-              type="button"
-              @click="chooseStd"
-              class="py-2.5 px-8 mr-2 mb-2 ml-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            >
-              Submit
-            </button>
-          </div>
+        <div class="wrapper-chart mt-5">
+          <apexchart 
+            width="100%"
+            height="380"
+            type="pie"
+            :options="this.optionsDonut"
+            :series="this.seriesDonut"
+          ></apexchart>
+          <div class="p-3"></div>
+          <br />
+          <hr />
+        
         </div>
       </div>
-    </div>
-  </div>
-  <span class="bg-blue-700 ml-5 rounded-md text-xs py-1 px-4 text-white"
-            >"EN" - English</span
-          >&nbsp;&nbsp;
-          <span class="bg-green-600 rounded-md text-xs py-1 px-4 text-white"
-            >"DE" - German</span>&nbsp;&nbsp;
-            <span class="bg-red-600 rounded-md text-xs py-1 px-4 text-white"
-            >"SA" - Sentence answer</span
-          >&nbsp;&nbsp;
-           <span class="bg-orange-600 rounded-md text-xs py-1 px-4 text-white"
-            >"PO" - Pick one
-          </span>&nbsp;&nbsp;
-          <span class="bg-red-600 rounded-md text-xs py-1 px-4 text-white"
-            >"PM" - Pick multiple</span
-          >&nbsp;&nbsp;<br>
-          <p class="mt-5 ml-5 text-sm font-normal text-gray-400">
-            * Evaluation is done only when the analysed answer differs from the original answer.
-          </p>
-  <div
+      
+ <div
     class="block p-2 w-full mt-2 ml-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
   >
+  
     <div class="wrapping-table mt-1">
       <table
         class="w-full text-xs text-justify text-left text-gray-500 dark:text-gray-400 overflow-auto sm:overflow-visible md:overflow-hidden lg:overflow-x-scroll"
@@ -136,80 +119,33 @@
           class="text-xs px-1 py-1 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
         >
           <tr>
-            <th scope="col" class="uppercase px-1 py-1">Student ID</th>
-            <th scope="col" class="uppercase px-1 py-1">Question Number</th>
-
-            <th
-              scope="col"
-              class="accordion-packed uppercase display:inline-block px-5 py-5"
-            >
-              Question Name
-            </th>
-            <th
-              scope="col"
-              class="accordion-packed uppercase display:inline-block px-5 py-5"
-            >
-              Correct Answer
-            </th>
-            <th
-              scope="col"
-              class="accordion-packed uppercase display:inline-block px-5 py-5"
-            >
-              Given Answer
-            </th>
-            <th scope="col" class="uppercase px-6 py-1">Points std</th>
-            <th scope="col" class="uppercase px-1 py-1">Maximum std</th>
-            
-          </tr>
-        </thead>
+            <th style="text-align: center;" scope="col" class="uppercase px-2 py-1">Index</th>
+            <th style="text-align: center;" scope="col" class="uppercase px-2 py-1">Student ID</th>
+            <th style="text-align: center;" scope="col" class="uppercase px-1 py-1">Exam score</th>
+            <th style="text-align: center;" scope="col" class="uppercase px-1 py-1">Status</th>
+            </tr>
+            </thead>
         <tbody>
           <tr
             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-            v-for="question in student"
-            :key="question.id"
+            v-for="result in overalResults"
+            :key="result.studentId"
           >
-            <td class="px-6 py-4">
-              {{ question.mtr }}
-            </td>
-            <td class="px-6 py-4">
-              {{ question.id }}
-            </td>
-            <td class="px-6 py-4">
-              <app-accordion>
-                <template v-slot:title> Question</template>
-                <template v-slot:content>
-                  {{ question.qname }}
-                </template>
-              </app-accordion>
-            </td>
-            <td class="px-6 py-4">
-              <app-accordion>
-                <template v-slot:title> Correct Answer</template>
-                <template v-slot:content>
-                  {{ question.canswer }}
-                </template>
-              </app-accordion>
-            </td>
-            <td class="px-6 py-4">
-              <app-accordion>
-                <template v-slot:title> Given Answer</template>
-                <template v-slot:content>
-                  {{ question.ganswer }}
-                </template>
-              </app-accordion>
-            </td>
-             <td class="px-6 py-4 ">
-              <input
-                type="text"
-                size="5"
-                @change="pointsChanged(question)"
-                v-model="question.stdPoint"
-              />
-            </td>
-            <td class="px-6 py-4">
-              {{ question.qPoint }}
-            </td>
-           
+            <td style="text-align: center;" class="px-6 py-4">
+              {{result.index}}
+            </td> 
+            <td style="text-align: center;" class="px-6 py-4">
+              {{result.studentId}}
+            </td> 
+            <td style="text-align: center;" class="px-6 py-4">
+              {{result.grade}}
+            </td> 
+            <td style="text-align: center;" v-if="parseInt(result.grade) ===5" class="px-6 py-4">
+               <span class="text-justify bg-red-500 rounded-full py-2 px-4 "></span>
+            </td> 
+            <td style="text-align: center;" v-else class="px-6 py-4">
+               <span class="text-justify bg-green-500 rounded-full py-2 px-4 "></span>
+            </td>       
           </tr>
         </tbody>
       </table>
@@ -223,13 +159,19 @@
   >
     Submit
   </button>
+  
 </template>
 <script>
+
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
-import { reactive } from "vue";
+import { reactive,  isProxy, toRaw } from "vue";
+
 import axios from "axios";
 import AppAccordion from "../../components/AppAccordion.vue";
+import { taggedTemplateExpression } from "@babel/types";
+import slider from "vue3-slider"
+
 
 var questions;
 
@@ -238,25 +180,7 @@ function chooseStd() {
   return true;
 }
 
-async function getQuestions() {
-  let data = [];
-  return await axios
-    .get("http://127.0.0.1:8080/exams/product management/questions")
-    .then((response) => {
-      response.data["questions"].forEach((element) => {
-        data.push({
-          id: element["questionID"],
-          questionDE: element["questionDE"],
-          questionEN: element["questionEN"],
-          correctDE: element["correctDE"],
-          correctEN: element["correctEN"],
-          points: element["points"],
-        });
-      });
-      return data;
-    });
-}
-async function sampleData1(offst, limit, std, qId, questions) {
+async function sampleData1(offst, limit, std) {
   console.log("ooomadam");
   if (std !== "") {
     return await axios
@@ -272,10 +196,21 @@ async function sampleData1(offst, limit, std, qId, questions) {
         console.log(offst + "DAAD" + limit);
         offst = offst + 1;
         for (let i = offst; i <= limit; i++) {
-          if (
-            qId !== "" &&
-            response.data["questions"][i - 1]["questionID"] == qId
-          ) {
+            data.push({
+              id: response.data["questions"][i - 1]["questionID"],
+              qname: response.data["questions"][i - 1]["question"],
+              lang: response.data["lang"],
+              qtype: response.data["questions"][i - 1]["questionType"],
+              canswer: response.data["questions"][i - 1]["correct"],
+              ganswer: response.data["questions"][i - 1]["answer"],
+              stdPoint: response.data["questions"][i - 1]["stdPoints"],
+              eval: response.data["questions"][i - 1]["evalutated"],
+              qPoint: response.data["questions"][i - 1]["maxPoints"],
+              points: response.data["questions"][i - 1]["stdPoints"],
+              mtr: response.data["mtr"],
+            });
+          }
+         /*  if (qId === "") {
             data.push({
               id: response.data["questions"][i - 1]["questionID"],
               qname: response.data["questions"][i - 1]["question"],
@@ -286,73 +221,14 @@ async function sampleData1(offst, limit, std, qId, questions) {
               points: response.data["questions"][i - 1]["stdPoints"],
               mtr: response.data["mtr"],
             });
-          }
-          if (qId === "") {
-            data.push({
-              id: response.data["questions"][i - 1]["questionID"],
-              qname: response.data["questions"][i - 1]["question"],
-              canswer: response.data["questions"][i - 1]["correct"],
-              ganswer: response.data["questions"][i - 1]["answer"],
-              stdPoint: response.data["questions"][i - 1]["stdPoints"],
-              qPoint: response.data["questions"][i - 1]["maxPoints"],
-              points: response.data["questions"][i - 1]["stdPoints"],
-              mtr: response.data["mtr"],
-            });
-          }
-          console.log(data);
-        }
+          } */
+          //console.log(data);
         return data;
       })
       .catch((err) => console.log(err));
   }
-  if (std === "" && qId !== "") {
-    return await axios
-      .get(
-        "http://127.0.0.1:8080/exams/product management/questions/" +
-          qId +
-          "/responses"
-      )
-      .then((response) => {
-        console.log(response);
-        let data = [];
-        offst = offst + 1;
-        let chosenQuestion = questions.filter((el) => el["id"] === qId);
-
-        for (let i = offst; i <= limit; i++) {
-          data.push({
-            id: qId,
-            qname: chosenQuestion[0]["questionEN"],
-            canswer: chosenQuestion[0]["correctEN"],
-            ganswer: response.data[i - 1]["response"],
-            stdPoint: response.data[i - 1]["stdPoints"],
-            qPoint: chosenQuestion[0]["points"],
-            //points: '',
-            mtr: response.data[i - 1]["mtr"],
-          });
-        }
-        return data;
-      });
-  }
 }
 
-async function updateStudentPoints(updateInfo) {
-  for (let i = 0; i < updateInfo.StdPoints.length; i++) {
-    axios
-      .put(
-        "http://127.0.0.1:8080/exams/product management/students/" +
-          updateInfo.mtr +
-          "/questions/" +
-          updateInfo.QuestionIds[i] +
-          "?p=" +
-          updateInfo.StdPoints[i]
-      )
-      .then((response) => {
-        console.log(response);
-      });
-  }
-
-  return null;
-}
 
 export default {
   name: "Dashboard",
@@ -368,25 +244,9 @@ export default {
           width: "3%",
           isKey: true,
         },
-        {
-          label: "Question number",
-          field: "id",
-          width: "3%",
-          isKey: true,
-        },
-        {
-          label: "Question name",
-          field: "qname",
-          width: "20%",
-        },
-        {
-          label: "Correct answer",
-          field: "canswer",
-          width: "3%",
-        },
-        {
-          label: "Given answer",
-          field: "ganswer",
+         {
+          label: "Evaluated",
+          field: "eval",
           width: "3%",
         },
         {
@@ -403,13 +263,60 @@ export default {
       rows: [],
       totalRecordCount: 50,
     });
+    
+  async function gradePerStudent(percentage) { //a nd b - two data arrays
+    
+      this.optionsDonut.labels=[];
+      console.log(this.optionsDonut.labels);
+     // this.optionsDonut.$forceUpdate();
+      this.seriesDonut=[];
+      //this.optionsDonut.labels=[];
+      await axios
+      .get("http://127.0.0.1:8080/exams/product management/stats?percentage=" +percentage)
+      .then((response) => {
+        var gradeDist = response.data['gradeDistribution'];
+        var gradeDistArr = Object.keys(gradeDist).map((key) => [Number(key), gradeDist[key]]);
+     
+      for (let i = 0; i < gradeDistArr.length; i++) 
+      {
+          
+         
+          console.log(gradeDistArr[i][0]);
+          this.seriesDonut.push(Number(gradeDistArr[i][1]));
+          this.optionsDonut.labels.push(Number(gradeDistArr[i][0]));
+
+      }
+      });          
+}
+
+     async function getOveralResults(percentage){
+      let overalResults = [];
+      http://127.0.0.1:8080/exams/product management/stats?percentage=0.1
+      await axios.get("http://127.0.0.1:8080/exams/product management/stats?percentage=" +percentage).then
+      ((response)=> 
+        {
+         // console.log(response.data['gradePerStudent']);
+          var result = Object.keys(response.data['gradePerStudent']).map((key) => 
+          [Number(key), response.data['gradePerStudent'][key]]);
+          for (let i = 0; i < result.length; i++) {
+              overalResults.push({
+              studentId: result[i][0],
+              index: i+1,
+              grade:result[i][1]
+            });
+            }
+              
+        });
+      this.overalResults = overalResults
+    }
+
 
     async function doSearch(offset, limit, order, sort, std, questionId) {
       if (offset >= 47) {
         limit = offset + 47;
       }
-      this.questions = await getQuestions();
-      console.log(this.questions);
+    //  this.questions = await getQuestions();
+      
       this.student = await sampleData1(
         offset,
         limit,
@@ -426,63 +333,115 @@ export default {
       table,
       doSearch,
       updateCheckedRows,
+      getOveralResults,
+      gradePerStudent
     };
   },
   data() {
     return {
-      toBeChangedPoints: {
-        mtr: "",
-        QuestionIds: [],
-        StdPoints: [],
-        valid: true,
+      examResult: {
+        studentId: "",
+        grade:"",
+        index:"",
       },
-      student: {},
-      text: "",
-      stdPoint: "",
-      uniqueQuestionIds: [],
-      questionId: "",
+      value: [0, 100],
+      percentage:50,
       questions: {},
+      student: {},
+      overalResults: [],
+      labels:[],
+      seriesDonut: [],
+      optionsDonut: {
+          labels :[],
+          chart: {
+            type: "donut",
+          },
+          legend: {
+            show: true,
+          },
+          dataLabels: {
+            enabled: true,
+          },
+          colors:['#5c0312','#a9fc03', '#03fc6f','#03f4fc','#8ac47a','#ffa200','#8e3fb0','#a81b5f','#fc7b03']
+        },
+
     };
   },
   components: {
     Icon,
     AppAccordion,
+    "vue3-slider": slider 
+  },
+  created() {
+    this.min = 0
+    this.max = 250
+    this.formatter = value => `￥${value}`
   },
   methods: {
     chooseStd: function () {
       console.log("HI!" + this.text);
-      this.doSearch(0, 47, "id", "asc", this.text, this.questionId);
+      this.doSearch(0, 47, "id", "asc", this.text);
     },
 
-    pointsChanged: function (question) {
-      console.log(question["mtr"]);
-      console.log(question["stdPoint"]);
-      console.log(question["id"]);
-      if (question["stdPoint"] <= question["qPoint"]) {
-        this.toBeChangedPoints.QuestionIds.push(question["id"]);
-        this.toBeChangedPoints.mtr = question["mtr"];
-        this.toBeChangedPoints.StdPoints.push(question["stdPoint"]);
-        console.log(this.toBeChangedPoints);
-      } else {
-        alert("badInput");
-      }
-    },
+    newGradePerStudent: function(percentage){
+      let myLabels=[];
+       this.optionsDonut.labels=[];
+      console.log(this.optionsDonut.labels);
+     // this.optionsDonut.$forceUpdate();
+      this.seriesDonut=[];
+      //this.optionsDonut.labels=[];
+       axios
+      .get("http://127.0.0.1:8080/exams/product management/stats?percentage=" +percentage)
+      .then((response) => {
+        var gradeDist = response.data['gradeDistribution'];
+        var gradeDistArr = Object.keys(gradeDist).map((key) => [Number(key), gradeDist[key]]);
+     
+      for (let i = 0; i < gradeDistArr.length; i++) 
+      {
+          
+         
+          console.log(gradeDistArr[i][0]);
+          this.seriesDonut.push(Number(gradeDistArr[i][1]));
+          myLabels.push(Number(gradeDistArr[i][0]));
 
-    submitNewPoints: function () {
-      for (let i = this.toBeChangedPoints.QuestionIds.length - 1; i >= 0; i--) {
-        if (
-          this.uniqueQuestionIds.includes(this.toBeChangedPoints.QuestionIds[i])
-        ) {
-          this.toBeChangedPoints.QuestionIds.splice(i, 1);
-          this.toBeChangedPoints.StdPoints.splice(i, 1);
-        } else {
-          this.uniqueQuestionIds.push(this.toBeChangedPoints.QuestionIds[i]);
-        }
       }
-      console.log(this.toBeChangedPoints);
-      updateStudentPoints(this.toBeChangedPoints);
+      }); 
+      this.optionsDonut = 
+      {
+        labels : myLabels,
+          chart: {
+            type: "donut",
+          },
+          legend: {
+            show: true,
+          },
+          dataLabels: {
+            enabled: true,
+          },
+         colors:['#5c0312','#a9fc03', '#03fc6f','#03f4fc','#8ac47a','#ffa200','#8e3fb0','#a81b5f','#fc7b03']
+      } 
     },
+      rangeChanged: function(event){
+        
+        let percentage=0;
+        percentage = event.target.value;  
+        this.getOveralResults(percentage/100);
+        this.percentage = percentage;
+       // this.gradePerStudent(percentage/100);
+        this.newGradePerStudent(percentage/100);
+
+      }
   },
-  mounted() {},
+  mounted() {
+    this.getOveralResults(0.5);
+    //this.gradePerStudent(0.5);
+    this.newGradePerStudent(0.5);
+  },
 };
 </script>
+<style>
+.slider {
+  /* overwrite slider styles */
+  width: 200px;
+}
+</style> 

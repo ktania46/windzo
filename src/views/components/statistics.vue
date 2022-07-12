@@ -67,37 +67,7 @@
         </li>
       </ol>
     </nav>
-    <div class="mt-5 w-full">
-      <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
-        Grade Distribution Chart
-      </h1>
-      <p class="mt-1 text-sm font-normal text-gray-400">
-        This pie chart shows the distribution of all students' grades. 
-        One segment is a representation of one of the possible grades.  
-        Floating point values are included.
-      </p>
-    </div>
-      <div
-        class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
-      >
-        <p class="text-gray-400 font-lexend font-normal">
-          All Grades Distribution
-        </p>
-
-        <div class="wrapper-chart mt-5">
-          <apexchart
-            width="100%"
-            height="380"
-            type="pie"
-            :options="optionsDonut"
-            :series="seriesDonut"
-          ></apexchart>
-          <div class="p-3"></div>
-          <br />
-          <hr />
-        
-        </div>
-      </div>
+     
     <div class="mt-5 w-full">
       <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
         Difficulty Per Question Histogram
@@ -251,7 +221,8 @@ async function gradePerQuestionMax(a) { //a nd b - two data arrays
           yaxis: {
             show: false,
           },
-          colors: ["#4f46e5", "#DC2626"],
+          colors: ["#4f46e5", "#7adeca"],
+
           dataLabels: {
             enabled: false,
           },

@@ -68,22 +68,16 @@
                     </router-link>
                     
                     <router-link
-                      to="/component/examination"
+                      to="/component/statistics"
                       class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
-                      Examination
+                      Statistics
                     </router-link>
                     <router-link
                       to="/component/evaluation"
                       class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
                       Evaluation
-                    </router-link>
-                    <router-link
-                      to="/component/extra"
-                      class="w-full text-left block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    >
-                      Extra
                     </router-link>
                   </template>
 
