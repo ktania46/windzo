@@ -350,10 +350,11 @@ export default {
     
   async function gradePerStudent(percentage) { //a nd b - two data arrays
     
-      let llabels=[];
+      this.optionsDonut.labels=[];
+      console.log(this.optionsDonut.labels);
      // this.optionsDonut.$forceUpdate();
       this.seriesDonut=[];
-      this.optionsDonut.labels=[];
+      //this.optionsDonut.labels=[];
       await axios
       .get("http://127.0.0.1:8080/exams/product management/stats?percentage=" +percentage)
       .then((response) => {
@@ -363,29 +364,13 @@ export default {
       for (let i = 0; i < gradeDistArr.length; i++) 
       {
           
-          llabels.push(gradeDistArr[i][0]);
+         
           console.log(gradeDistArr[i][0]);
           this.seriesDonut.push(Number(gradeDistArr[i][1]));
+          this.optionsDonut.labels.push(Number(gradeDistArr[i][0]));
 
       }
-      });
-        
-         
-          this.optionsDonut= {
-          labels :llabels,
-          chart: {
-            type: "donut",
-          },
-          legend: {
-            show: true,
-          },
-          dataLabels: {
-            enabled: true,
-          },
-          colors:['#fc7b03','#a9fc03', '#03fc6f','#03f4fc','#13303b','#0e173b','#8e3fb0','#a81b5f','#5c0312']
-        }
-          console.log(this.seriesDonut);
-          
+      });          
 }
 
      async function getOveralResults(percentage){
@@ -461,7 +446,7 @@ export default {
           dataLabels: {
             enabled: true,
           },
-          colors:['#fc7b03','#a9fc03', '#03fc6f','#03f4fc','#13303b','#0e173b','#8e3fb0','#a81b5f','#5c0312']
+          colors:['#5c0312','#a9fc03', '#03fc6f','#03f4fc','#13303b','#0e173b','#8e3fb0','#a81b5f','#fc7b03']
         },
 
     };
@@ -482,19 +467,59 @@ export default {
       this.doSearch(0, 47, "id", "asc", this.text);
     },
 
+    newGradePerStudent: function(percentage){
+      let myLabels=[];
+       this.optionsDonut.labels=[];
+      console.log(this.optionsDonut.labels);
+     // this.optionsDonut.$forceUpdate();
+      this.seriesDonut=[];
+      //this.optionsDonut.labels=[];
+       axios
+      .get("http://127.0.0.1:8080/exams/product management/stats?percentage=" +percentage)
+      .then((response) => {
+        var gradeDist = response.data['gradeDistribution'];
+        var gradeDistArr = Object.keys(gradeDist).map((key) => [Number(key), gradeDist[key]]);
+     
+      for (let i = 0; i < gradeDistArr.length; i++) 
+      {
+          
+         
+          console.log(gradeDistArr[i][0]);
+          this.seriesDonut.push(Number(gradeDistArr[i][1]));
+          myLabels.push(Number(gradeDistArr[i][0]));
+
+      }
+      }); 
+      this.optionsDonut = 
+      {
+        labels : myLabels,
+          chart: {
+            type: "donut",
+          },
+          legend: {
+            show: true,
+          },
+          dataLabels: {
+            enabled: true,
+          },
+         colors:['#d91623','#a9fc03', '#03fc6f','#03f4fc','#13303b','#0e173b','#8e3fb0','#a81b5f','#fc7b03']
+      } 
+    },
       rangeChanged: function(event){
-        this.optionsDonut.labels=[];
+        
         let percentage=0;
         percentage = event.target.value;  
         this.getOveralResults(percentage/100);
         this.percentage = percentage;
-        this.gradePerStudent(percentage/100);
+       // this.gradePerStudent(percentage/100);
+        this.newGradePerStudent(percentage/100);
 
       }
   },
   mounted() {
     this.getOveralResults(0.5);
-    this.gradePerStudent(0.5);
+    //this.gradePerStudent(0.5);
+    this.newGradePerStudent(0.5);
   },
 };
 </script>
