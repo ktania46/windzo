@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard p-4">
-    <nav class="flex" aria-label="Evaluation">
+    <nav class="flex" aria-label="Breadcrumb">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -211,10 +211,10 @@
               />
             </span>
             <span class="text-left">
-              <h1 class="font-bold text-xl dark:text-gray-200">
-                Elizabeth Begum
+              <h1 class="font-bold text-sm dark:text-gray-200">
+               Professor Elizabeth Begum
               </h1>
-              <p class="dark:text-gray-200">online</p>
+              <p class="dark:text-gray-200 text-sm">online</p>
             </span>
           </button>
           <button class="w-full box-border flex gap-4">
@@ -228,8 +228,8 @@
               />
             </span>
             <span class="text-left">
-              <h1 class="font-bold text-xl dark:text-gray-200">Ethan Roger</h1>
-              <p class="dark:text-gray-200">online</p>
+              <h1 class="font-bold text-sm dark:text-gray-200">Professor Ethan Roger</h1>
+              <p class="dark:text-gray-200 text-sm">online</p>
             </span>
           </button>
         </div>
@@ -245,10 +245,10 @@
               />
             </span>
             <span class="text-left">
-              <h1 class="font-bold text-xl dark:text-gray-200">
-                Tobi Ferreira
+              <h1 class="font-bold text-sm dark:text-gray-200">
+               Professor Tobi Ferreira
               </h1>
-              <p class="dark:text-gray-200">online</p>
+              <p class="dark:text-gray-200 text-sm">online</p>
             </span>
           </button>
           <p class="font-bold font-lg mt-5 dark:text-gray-200">Offline</p>
@@ -263,8 +263,8 @@
               />
             </span>
             <span class="text-left">
-              <h1 class="font-bold text-xl dark:text-gray-200">Taylor Neal</h1>
-              <p class="dark:text-gray-200">2 Hours ago</p>
+              <h1 class="font-bold text-sm dark:text-gray-200">Professor Taylor Neal</h1>
+              <p class="dark:text-gray-200 text-sm">2 Hours ago</p>
             </span>
           </button>
           <button class="w-full box-border flex gap-4">
@@ -278,45 +278,21 @@
               />
             </span>
             <span class="text-left">
-              <h1 class="font-bold text-xl dark:text-gray-200">Bruno Barron</h1>
-              <p class="dark:text-gray-200">4 Hours ago</p>
+              <h1 class="text-sm dark:text-gray-200">Professor Bruno Barron</h1>
+              <p class="dark:text-gray-200 text-sm">4 Hours ago</p>
             </span>
           </button>
         </div>
       </div>
     </div>
   </div>
-  <div class="m-4">
-    <table-lite
-      :is-loading="table.isLoading"
-      :columns="table.columns"
-      :rows="table.rows"
-      :total="table.totalRecordCount"
-      :sortable="table.sortable"
-      :messages="table.messages"
-      @do-search="doSearch"
-      @is-finished="table.isLoading = false"
-    />
-  </div>
-  <div class="m-4">
-    <table-lite
-      :is-loading="table1.isLoading"
-      :columns="table1.columns"
-      :rows="table1.rows"
-      :total="table1.totalRecordCount"
-      :sortable="table1.sortable"
-      :messages="table1.messages"
-      @do-search="doSearch1"
-      @is-finished="table1.isLoading = false"
-    />
-  </div>
+ 
 </template>
 
 <script>
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
 import { reactive } from "vue";
-import TableLite from "vue3-table-lite";
 
 // Fake Data for 'asc' sortable
 const sampleData1 = (offst, limit) => {
@@ -493,7 +469,6 @@ export default {
   },
   components: {
     Icon,
-    TableLite,
   },
   mounted() {},
 };

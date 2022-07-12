@@ -100,6 +100,7 @@
             <!-- end copy -->
           </div>
         </div>
+       
         <div class="accordion-packed">
           <h2 class="font-semibold dark:text-gray-200">Accordion With icon</h2>
           <p class="mt-1 dark:text-gray-200">
@@ -173,7 +174,7 @@
             <!-- copy this component  -->
             <menu-accordion>
               <template v-slot:icon>
-                <Icon icon="akar-icons:link-out" />
+                <Icon icon="akar-icomenuns:link-out" />
               </template>
               <template v-slot:title> Click me to open</template>
               <template v-slot:content>
@@ -191,6 +192,7 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>

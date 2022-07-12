@@ -1,8 +1,5 @@
 <template>
-  <!-- Search component Students with name of type, press Ctrl + F -->
-
-  <div class="Students h-auto p-3">
-    <nav class="flex" aria-label="Students">
+ <nav class="flex" aria-label="Evaluation">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -60,33 +57,45 @@
             <a
               href="#"
               class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-              >Students</a
+              >Evaluation</a
             >
           </div>
         </li>
       </ol>
     </nav>
-  </div>
-    <!-- end nav -->
-	
-	<div class="mt-5 ml-5 w-full">
-      <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
-        Students info
-      </h1>
-      <p class="mt-1 text-sm font-normal text-gray-400">
-        Here you can observe all Students info for a chosen subject.
-      </p>
-    </div>
-	  <div class="mt-5 ml-5 w-full">
+  <div class="grid grid-cols-1 mt-5 ml-2 gap-5">
+    <div class="card w-full p-5 rounded-md bg-white dark:bg-gray-800">
+      
+      <div class="wrapper-button w-full box-border mt-4">
+        <div
+          class="card p-8 max-w-full text:center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="#">
+            <h5
+              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            >
+              Edit Student Score
+            </h5>
+          </a>
+
+          <div class="mt-5 w-full">
             
             <input
               v-model="text"
               size="10"
               required
-              placeholder="Please Enter Student ID"
+              placeholder="Enter Student ID"
+              class="p-3 w-full bg-black dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+
+            />&nbsp;
+            <input
+              v-model="questionId"
+              size="10"
+              required
+              placeholder="Enter Question Id"
               class="p-3 w-full bg-white dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+
             /><br><br>
-            
             <button
               type="button"
               @click="chooseStd"
@@ -94,28 +103,14 @@
             >
               Submit
             </button>
-          </div><br>
-          <span class="bg-blue-700 ml-5 rounded-md text-xs py-1 px-4 text-white"
-            >"EN" - English</span
-          >&nbsp;&nbsp;
-          <span class="bg-green-600 rounded-md text-xs py-1 px-4 text-white"
-            >"DE" - German</span>&nbsp;&nbsp;
-            <span class="bg-red-600 rounded-md text-xs py-1 px-4 text-white"
-            >"SA" - Sentence answer</span
-          >&nbsp;&nbsp;
-           <span class="bg-orange-600 rounded-md text-xs py-1 px-4 text-white"
-            >"PO" - Pick one
-          </span>&nbsp;&nbsp;
-          <span class="bg-red-600 rounded-md text-xs py-1 px-4 text-white"
-            >"PM" - Pick multiple</span
-          >&nbsp;&nbsp;<br>
-          <p class="mt-5 ml-5 text-sm font-normal text-gray-400">
-            * Evaluation is done only when the analysed answer differs from the original answer.
-          </p>
- <div
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
     class="block p-2 w-full mt-2 ml-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
   >
-  
     <div class="wrapping-table mt-1">
       <table
         class="w-full text-xs text-justify text-left text-gray-500 dark:text-gray-400 overflow-auto sm:overflow-visible md:overflow-hidden lg:overflow-x-scroll"
@@ -124,10 +119,9 @@
           class="text-xs px-1 py-1 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
         >
           <tr>
-            <th scope="col" class="uppercase px-2 py-1">Student ID</th>
-            <th scope="col" class="uppercase px-2 py-1">Question Number</th>
-            <th scope="col" class="uppercase px-1 py-1">Exam Language</th>
-            <th scope="col" class="uppercase px-6 py-1">Question Type</th>
+            <th scope="col" class="uppercase px-1 py-1">Student ID</th>
+            <th scope="col" class="uppercase px-1 py-1">Question Number</th>
+
             <th
               scope="col"
               class="accordion-packed uppercase display:inline-block px-5 py-5"
@@ -146,10 +140,8 @@
             >
               Given Answer
             </th>
-            <th scope="col" class="uppercase px-6 py-1">*Evaluated</th>
-            <th scope="col" class="uppercase px-1 py-1">Maximum std</th>
             <th scope="col" class="uppercase px-6 py-1">Points std</th>
-            
+            <th scope="col" class="uppercase px-1 py-1">Maximum std</th>
             
           </tr>
         </thead>
@@ -164,12 +156,6 @@
             </td>
             <td class="px-6 py-4">
               {{ question.id }}
-            </td>
-             <td class="px-6 py-4">
-              {{ question.lang }}
-            </td>
-            <td class="px-6 py-4">
-              {{ question.qtype }}
             </td>
             <td class="px-6 py-4">
               <app-accordion>
@@ -195,14 +181,17 @@
                 </template>
               </app-accordion>
             </td>
-             <td class="px-6 py-4">
-              {{ question.eval }}
-            </td>
-             <td class="px-6 py-4">
-              {{ question.qPoint }}
+             <td class="px-6 py-4 ">
+              <input
+                type="text"               class="p-3 w-full bg-black dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+
+                size="5"
+                @change="pointsChanged(question)"
+                v-model="question.stdPoint"
+              />
             </td>
             <td class="px-6 py-4">
-              {{ question.points }}
+              {{ question.qPoint }}
             </td>
            
           </tr>
@@ -233,7 +222,25 @@ function chooseStd() {
   return true;
 }
 
-async function sampleData1(offst, limit, std) {
+async function getQuestions() {
+  let data = [];
+  return await axios
+    .get("http://127.0.0.1:8080/exams/product management/questions")
+    .then((response) => {
+      response.data["questions"].forEach((element) => {
+        data.push({
+          id: element["questionID"],
+          questionDE: element["questionDE"],
+          questionEN: element["questionEN"],
+          correctDE: element["correctDE"],
+          correctEN: element["correctEN"],
+          points: element["points"],
+        });
+      });
+      return data;
+    });
+}
+async function sampleData1(offst, limit, std, qId, questions) {
   console.log("ooomadam");
   if (std !== "") {
     return await axios
@@ -249,21 +256,22 @@ async function sampleData1(offst, limit, std) {
         console.log(offst + "DAAD" + limit);
         offst = offst + 1;
         for (let i = offst; i <= limit; i++) {
+          if (
+            qId !== "" &&
+            response.data["questions"][i - 1]["questionID"] == qId
+          ) {
             data.push({
               id: response.data["questions"][i - 1]["questionID"],
               qname: response.data["questions"][i - 1]["question"],
-              lang: response.data["lang"],
-              qtype: response.data["questions"][i - 1]["questionType"],
               canswer: response.data["questions"][i - 1]["correct"],
               ganswer: response.data["questions"][i - 1]["answer"],
               stdPoint: response.data["questions"][i - 1]["stdPoints"],
-              eval: response.data["questions"][i - 1]["evalutated"],
               qPoint: response.data["questions"][i - 1]["maxPoints"],
               points: response.data["questions"][i - 1]["stdPoints"],
               mtr: response.data["mtr"],
             });
           }
-         /*  if (qId === "") {
+          if (qId === "") {
             data.push({
               id: response.data["questions"][i - 1]["questionID"],
               qname: response.data["questions"][i - 1]["question"],
@@ -274,14 +282,14 @@ async function sampleData1(offst, limit, std) {
               points: response.data["questions"][i - 1]["stdPoints"],
               mtr: response.data["mtr"],
             });
-          } */
+          }
           console.log(data);
-        
+        }
         return data;
       })
       .catch((err) => console.log(err));
   }
-  /* if (std === "" && qId !== "") {
+  if (std === "" && qId !== "") {
     return await axios
       .get(
         "http://127.0.0.1:8080/exams/product management/questions/" +
@@ -308,10 +316,10 @@ async function sampleData1(offst, limit, std) {
         }
         return data;
       });
-  } */
+  }
 }
 
-/* async function updateStudentPoints(updateInfo) {
+async function updateStudentPoints(updateInfo) {
   for (let i = 0; i < updateInfo.StdPoints.length; i++) {
     axios
       .put(
@@ -328,7 +336,7 @@ async function sampleData1(offst, limit, std) {
   }
 
   return null;
-} */
+}
 
 export default {
   name: "Dashboard",
@@ -350,18 +358,6 @@ export default {
           width: "3%",
           isKey: true,
         },
-          {
-          label: "Exam Language",
-          field: "lang",
-          width: "3%",
-          isKey: true,
-        },
-        {
-          label: "Question Type",
-          field: "qtype",
-          width: "3%",
-          isKey: true,
-        },
         {
           label: "Question name",
           field: "qname",
@@ -375,11 +371,6 @@ export default {
         {
           label: "Given answer",
           field: "ganswer",
-          width: "3%",
-        },
-         {
-          label: "Evaluated",
-          field: "eval",
           width: "3%",
         },
         {
@@ -401,7 +392,7 @@ export default {
       if (offset >= 47) {
         limit = offset + 47;
       }
-    //  this.questions = await getQuestions();
+      this.questions = await getQuestions();
       console.log(this.questions);
       this.student = await sampleData1(
         offset,
@@ -423,9 +414,7 @@ export default {
   },
   data() {
     return {
-      questions: {},
-      student: {},
-      /* toBeChangedPoints: {
+      toBeChangedPoints: {
         mtr: "",
         QuestionIds: [],
         StdPoints: [],
@@ -436,7 +425,7 @@ export default {
       stdPoint: "",
       uniqueQuestionIds: [],
       questionId: "",
-      questions: {}, */
+      questions: {},
     };
   },
   components: {
@@ -446,10 +435,10 @@ export default {
   methods: {
     chooseStd: function () {
       console.log("HI!" + this.text);
-      this.doSearch(0, 47, "id", "asc", this.text);
+      this.doSearch(0, 47, "id", "asc", this.text, this.questionId);
     },
 
-  /*   pointsChanged: function (question) {
+    pointsChanged: function (question) {
       console.log(question["mtr"]);
       console.log(question["stdPoint"]);
       console.log(question["id"]);
@@ -461,9 +450,9 @@ export default {
       } else {
         alert("badInput");
       }
-    }, */
+    },
 
-    /* submitNewPoints: function () {
+    submitNewPoints: function () {
       for (let i = this.toBeChangedPoints.QuestionIds.length - 1; i >= 0; i--) {
         if (
           this.uniqueQuestionIds.includes(this.toBeChangedPoints.QuestionIds[i])
@@ -476,7 +465,7 @@ export default {
       }
       console.log(this.toBeChangedPoints);
       updateStudentPoints(this.toBeChangedPoints);
-    }, */
+    },
   },
   mounted() {},
 };
