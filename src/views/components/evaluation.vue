@@ -108,6 +108,23 @@
       </div>
     </div>
   </div>
+  <span class="bg-blue-700 ml-5 rounded-md text-xs py-1 px-4 text-white"
+            >"EN" - English</span
+          >&nbsp;&nbsp;
+          <span class="bg-green-600 rounded-md text-xs py-1 px-4 text-white"
+            >"DE" - German</span>&nbsp;&nbsp;
+            <span class="bg-red-600 rounded-md text-xs py-1 px-4 text-white"
+            >"SA" - Sentence answer</span
+          >&nbsp;&nbsp;
+           <span class="bg-orange-600 rounded-md text-xs py-1 px-4 text-white"
+            >"PO" - Pick one
+          </span>&nbsp;&nbsp;
+          <span class="bg-red-600 rounded-md text-xs py-1 px-4 text-white"
+            >"PM" - Pick multiple</span
+          >&nbsp;&nbsp;<br>
+          <p class="mt-5 ml-5 text-sm font-normal text-gray-400">
+            * Evaluation is done only when the analysed answer differs from the original answer.
+          </p>
   <div
     class="block p-2 w-full mt-2 ml-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
   >
@@ -183,8 +200,7 @@
             </td>
              <td class="px-6 py-4 ">
               <input
-                type="text"               class="p-3 w-full bg-black dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
-
+                type="text"
                 size="5"
                 @change="pointsChanged(question)"
                 v-model="question.stdPoint"

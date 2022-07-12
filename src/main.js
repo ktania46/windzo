@@ -9,7 +9,8 @@ import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
 import "./assets/tailwind.css";
 import "./assets/animate.css";
 import "./assets/sass/css/windzo.css";
-
+import RangeSlider from 'vue-range-slider';
+import 'vue-range-slider/dist/vue-range-slider.css';
 
 const app = createApp(App);
 app.use(router, Icon);

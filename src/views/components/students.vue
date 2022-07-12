@@ -68,7 +68,10 @@
     </nav>
   </div>
     <!-- end nav -->
-	
+   <!--  <vue3-slider v-model="myNumber" color="#FB278D" track-color="#FEFEFE" />
+<label for="customRange3" class="form-label">Example range</label> -->
+
+
 	<div class="mt-5 ml-5 w-full">
       <h1 class="text-2xl text-gray-900 font-medium dark:text-gray-200">
         Students info
@@ -77,24 +80,8 @@
         Here you can observe all Students info for a chosen subject.
       </p>
     </div>
-	  <div class="mt-5 ml-5 w-full">
-            
-            <input
-              v-model="text"
-              size="10"
-              required
-              placeholder="Please Enter Student ID"
-              class="p-3 w-full bg-white dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
-            /><br><br>
-            
-            <button
-              type="button"
-              @click="chooseStd"
-              class="py-2.5 px-8 mr-2 mb-2 ml-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            >
-              Submit
-            </button>
-          </div><br>
+
+          <br>
           <span class="bg-blue-700 ml-5 rounded-md text-xs py-1 px-4 text-white"
             >"EN" - English</span
           >&nbsp;&nbsp;
@@ -112,6 +99,32 @@
           <p class="mt-5 ml-5 text-sm font-normal text-gray-400">
             * Evaluation is done only when the analysed answer differs from the original answer.
           </p>
+          
+          <div
+        class="mt-2 ml-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
+      >
+        <p class="text-gray-400 font-lexend font-normal">
+          All Grades Distribution Assuming {{percentage}}% as dead pass
+        </p>
+
+        <div class="wrapper-chart mt-5">
+          <apexchart
+            width="100%"
+            height="380"
+            type="pie"
+            :options="this.optionsDonut"
+            :series="this.seriesDonut"
+          ></apexchart>
+          <div class="p-3"></div>
+          <br />
+          <hr />
+        
+        </div>
+      </div>
+      <div class="range">
+  <input @change="rangeChanged($event)" type="range" class="form-range" min="0" max="100" step="1" id="customRange3" />
+  <h1 style="margin-left:5.5%; color:gray">{{percentage}}</h1>
+</div>
  <div
     class="block p-2 w-full mt-2 ml-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border shadow"
   >
@@ -124,10 +137,12 @@
           class="text-xs px-1 py-1 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
         >
           <tr>
-            <th scope="col" class="uppercase px-2 py-1">Student ID</th>
-            <th scope="col" class="uppercase px-2 py-1">Question Number</th>
-            <th scope="col" class="uppercase px-1 py-1">Exam Language</th>
-            <th scope="col" class="uppercase px-6 py-1">Question Type</th>
+            <th style="text-align: center;" scope="col" class="uppercase px-2 py-1">Index</th>
+            <th style="text-align: center;" scope="col" class="uppercase px-2 py-1">Student ID</th>
+            <th style="text-align: center;" scope="col" class="uppercase px-1 py-1">Exam score</th>
+            <th style="text-align: center;" scope="col" class="uppercase px-1 py-1">Status</th>
+            </tr>
+            <!-- <th scope="col" class="uppercase px-6 py-1">Question Type</th>
             <th
               scope="col"
               class="accordion-packed uppercase display:inline-block px-5 py-5"
@@ -151,60 +166,29 @@
             <th scope="col" class="uppercase px-6 py-1">Points std</th>
             
             
-          </tr>
+          </tr> -->
         </thead>
         <tbody>
           <tr
             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-            v-for="question in student"
-            :key="question.id"
+            v-for="result in overalResults"
+            :key="result.studentId"
           >
-            <td class="px-6 py-4">
-              {{ question.mtr }}
-            </td>
-            <td class="px-6 py-4">
-              {{ question.id }}
-            </td>
-             <td class="px-6 py-4">
-              {{ question.lang }}
-            </td>
-            <td class="px-6 py-4">
-              {{ question.qtype }}
-            </td>
-            <td class="px-6 py-4">
-              <app-accordion>
-                <template v-slot:title> Question</template>
-                <template v-slot:content>
-                  {{ question.qname }}
-                </template>
-              </app-accordion>
-            </td>
-            <td class="px-6 py-4">
-              <app-accordion>
-                <template v-slot:title> Correct Answer</template>
-                <template v-slot:content>
-                  {{ question.canswer }}
-                </template>
-              </app-accordion>
-            </td>
-            <td class="px-6 py-4">
-              <app-accordion>
-                <template v-slot:title> Given Answer</template>
-                <template v-slot:content>
-                  {{ question.ganswer }}
-                </template>
-              </app-accordion>
-            </td>
-             <td class="px-6 py-4">
-              {{ question.eval }}
-            </td>
-             <td class="px-6 py-4">
-              {{ question.qPoint }}
-            </td>
-            <td class="px-6 py-4">
-              {{ question.points }}
-            </td>
-           
+            <td style="text-align: center;" class="px-6 py-4">
+              {{result.index}}
+            </td> 
+            <td style="text-align: center;" class="px-6 py-4">
+              {{result.studentId}}
+            </td> 
+            <td style="text-align: center;" class="px-6 py-4">
+              {{result.grade}}
+            </td> 
+            <td style="text-align: center;" v-if="parseInt(result.grade) ===5" class="px-6 py-4">
+               <span class="text-justify bg-red-500 rounded-full py-2 px-4 "></span>
+            </td> 
+            <td style="text-align: center;" v-else class="px-6 py-4">
+               <span class="text-justify bg-green-500 rounded-full py-2 px-4 "></span>
+            </td>       
           </tr>
         </tbody>
       </table>
@@ -218,13 +202,27 @@
   >
     Submit
   </button>
+  <p>
+  <button @click="prevPage" :disabled="cantGoBack">Previous</button> 
+  <button @click="nextPage">Next</button>
+  </p>
 </template>
 <script>
+
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
-import { reactive } from "vue";
+import { reactive,  isProxy, toRaw } from "vue";
+
 import axios from "axios";
 import AppAccordion from "../../components/AppAccordion.vue";
+import requireObjectCoercible from "core-js/internals/require-object-coercible";
+import { taggedTemplateExpression } from "@babel/types";
+import slider from "vue3-slider"
+//import 'vue-range-component/dist/vue-range-slider.css';
+import VueRangeSlider from 'vue-range-component';
+
+
+
 
 var questions;
 
@@ -275,60 +273,13 @@ async function sampleData1(offst, limit, std) {
               mtr: response.data["mtr"],
             });
           } */
-          console.log(data);
-        
+          //console.log(data);
         return data;
       })
       .catch((err) => console.log(err));
   }
-  /* if (std === "" && qId !== "") {
-    return await axios
-      .get(
-        "http://127.0.0.1:8080/exams/product management/questions/" +
-          qId +
-          "/responses"
-      )
-      .then((response) => {
-        console.log(response);
-        let data = [];
-        offst = offst + 1;
-        let chosenQuestion = questions.filter((el) => el["id"] === qId);
-
-        for (let i = offst; i <= limit; i++) {
-          data.push({
-            id: qId,
-            qname: chosenQuestion[0]["questionEN"],
-            canswer: chosenQuestion[0]["correctEN"],
-            ganswer: response.data[i - 1]["response"],
-            stdPoint: response.data[i - 1]["stdPoints"],
-            qPoint: chosenQuestion[0]["points"],
-            //points: '',
-            mtr: response.data[i - 1]["mtr"],
-          });
-        }
-        return data;
-      });
-  } */
 }
 
-/* async function updateStudentPoints(updateInfo) {
-  for (let i = 0; i < updateInfo.StdPoints.length; i++) {
-    axios
-      .put(
-        "http://127.0.0.1:8080/exams/product management/students/" +
-          updateInfo.mtr +
-          "/questions/" +
-          updateInfo.QuestionIds[i] +
-          "?p=" +
-          updateInfo.StdPoints[i]
-      )
-      .then((response) => {
-        console.log(response);
-      });
-  }
-
-  return null;
-} */
 
 export default {
   name: "Dashboard",
@@ -396,13 +347,75 @@ export default {
       rows: [],
       totalRecordCount: 50,
     });
+    
+  async function gradePerStudent(percentage) { //a nd b - two data arrays
+    
+      let llabels=[];
+     // this.optionsDonut.$forceUpdate();
+      this.seriesDonut=[];
+      this.optionsDonut.labels=[];
+      await axios
+      .get("http://127.0.0.1:8080/exams/product management/stats?percentage=" +percentage)
+      .then((response) => {
+        var gradeDist = response.data['gradeDistribution'];
+        var gradeDistArr = Object.keys(gradeDist).map((key) => [Number(key), gradeDist[key]]);
+     
+      for (let i = 0; i < gradeDistArr.length; i++) 
+      {
+          
+          llabels.push(gradeDistArr[i][0]);
+          console.log(gradeDistArr[i][0]);
+          this.seriesDonut.push(Number(gradeDistArr[i][1]));
+
+      }
+      });
+        
+         
+          this.optionsDonut= {
+          labels :llabels,
+          chart: {
+            type: "donut",
+          },
+          legend: {
+            show: true,
+          },
+          dataLabels: {
+            enabled: true,
+          },
+          colors:['#fc7b03','#a9fc03', '#03fc6f','#03f4fc','#13303b','#0e173b','#8e3fb0','#a81b5f','#5c0312']
+        }
+          console.log(this.seriesDonut);
+          
+}
+
+     async function getOveralResults(percentage){
+      let overalResults = [];
+      http://127.0.0.1:8080/exams/product management/stats?percentage=0.1
+      await axios.get("http://127.0.0.1:8080/exams/product management/stats?percentage=" +percentage).then
+      ((response)=> 
+        {
+         // console.log(response.data['gradePerStudent']);
+          var result = Object.keys(response.data['gradePerStudent']).map((key) => 
+          [Number(key), response.data['gradePerStudent'][key]]);
+          for (let i = 0; i < result.length; i++) {
+              overalResults.push({
+              studentId: result[i][0],
+              index: i+1,
+              grade:result[i][1]
+            });
+            }
+              
+        });
+      this.overalResults = overalResults
+    }
+
 
     async function doSearch(offset, limit, order, sort, std, questionId) {
       if (offset >= 47) {
         limit = offset + 47;
       }
     //  this.questions = await getQuestions();
-      console.log(this.questions);
+      
       this.student = await sampleData1(
         offset,
         limit,
@@ -419,29 +432,49 @@ export default {
       table,
       doSearch,
       updateCheckedRows,
+      getOveralResults,
+      gradePerStudent
     };
   },
   data() {
     return {
+      examResult: {
+        studentId: "",
+        grade:"",
+        index:"",
+      },
+      value: [0, 100],
+      percentage:50,
       questions: {},
       student: {},
-      /* toBeChangedPoints: {
-        mtr: "",
-        QuestionIds: [],
-        StdPoints: [],
-        valid: true,
-      },
-      student: {},
-      text: "",
-      stdPoint: "",
-      uniqueQuestionIds: [],
-      questionId: "",
-      questions: {}, */
+      overalResults: [],
+      labels:[],
+      seriesDonut: [],
+      optionsDonut: {
+          labels :[],
+          chart: {
+            type: "donut",
+          },
+          legend: {
+            show: true,
+          },
+          dataLabels: {
+            enabled: true,
+          },
+          colors:['#fc7b03','#a9fc03', '#03fc6f','#03f4fc','#13303b','#0e173b','#8e3fb0','#a81b5f','#5c0312']
+        },
+
     };
   },
   components: {
     Icon,
     AppAccordion,
+    "vue3-slider": slider 
+  },
+  created() {
+    this.min = 0
+    this.max = 250
+    this.formatter = value => `￥${value}`
   },
   methods: {
     chooseStd: function () {
@@ -449,35 +482,25 @@ export default {
       this.doSearch(0, 47, "id", "asc", this.text);
     },
 
-  /*   pointsChanged: function (question) {
-      console.log(question["mtr"]);
-      console.log(question["stdPoint"]);
-      console.log(question["id"]);
-      if (question["stdPoint"] <= question["qPoint"]) {
-        this.toBeChangedPoints.QuestionIds.push(question["id"]);
-        this.toBeChangedPoints.mtr = question["mtr"];
-        this.toBeChangedPoints.StdPoints.push(question["stdPoint"]);
-        console.log(this.toBeChangedPoints);
-      } else {
-        alert("badInput");
-      }
-    }, */
+      rangeChanged: function(event){
+        this.optionsDonut.labels=[];
+        let percentage=0;
+        percentage = event.target.value;  
+        this.getOveralResults(percentage/100);
+        this.percentage = percentage;
+        this.gradePerStudent(percentage/100);
 
-    /* submitNewPoints: function () {
-      for (let i = this.toBeChangedPoints.QuestionIds.length - 1; i >= 0; i--) {
-        if (
-          this.uniqueQuestionIds.includes(this.toBeChangedPoints.QuestionIds[i])
-        ) {
-          this.toBeChangedPoints.QuestionIds.splice(i, 1);
-          this.toBeChangedPoints.StdPoints.splice(i, 1);
-        } else {
-          this.uniqueQuestionIds.push(this.toBeChangedPoints.QuestionIds[i]);
-        }
       }
-      console.log(this.toBeChangedPoints);
-      updateStudentPoints(this.toBeChangedPoints);
-    }, */
   },
-  mounted() {},
+  mounted() {
+    this.getOveralResults(0.5);
+    this.gradePerStudent(0.5);
+  },
 };
 </script>
+<style>
+.slider {
+  /* overwrite slider styles */
+  width: 200px;
+}
+</style> 

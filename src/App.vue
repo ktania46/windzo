@@ -13,6 +13,12 @@
       <Footer />
     </div>
   </div>
+
+  <div>
+    <div class="output">Data: {{ value }}</div>
+    <Slider v-model="value" />
+  </div>
+  
   <!-- end app -->
 </template>
 
@@ -23,6 +29,7 @@
   import Footer from "@/components/Footer";
   // npm-js
   import Scrollbar from "smooth-scrollbar";
+  import Slider from '@vueform/slider'
   export default {
     name: "App",
 
@@ -30,6 +37,12 @@
       Header,
       Footer,
       Sidebar,
+      Slider
+    },
+    data(){
+      return{
+        value:20
+      }
     },
     mounted() {
       Scrollbar.init(document.querySelector("#body-scroll"));
@@ -45,3 +58,18 @@
     },
   };
 </script>
+<style src="@vueform/slider/themes/default.css"></style>
+
+<style scoped>
+.output {
+  font-family: Courier, Courier New, Lucida Console, Monaco, Consolas;
+  background: #000000;
+  color: #ffffff;
+  padding: 20px;
+  margin-bottom: 50px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+</style>
